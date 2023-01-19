@@ -1,6 +1,6 @@
 package br.com.ada.contas;
 
-public abstract class ContaPoupanca extends Conta implements IConta {
+public class ContaPoupanca extends Conta implements IConta {
     @Override
     public void depositar() {
 
