@@ -21,4 +21,8 @@ public abstract class Cliente {
     public boolean verificaSenha(String senhaInserida) {
         return this.senha.equals(senhaInserida);
     }
+
+    public void adicionarConta(Conta conta) {
+        this.contas.add(conta);
+    }
 }
