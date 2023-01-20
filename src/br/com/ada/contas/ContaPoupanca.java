@@ -7,17 +7,17 @@ public class ContaPoupanca extends Conta implements IConta {
         super(cliente);
     }
     @Override
-    public void depositar() {
+    public void depositar(double valor) {
 
     }
 
     @Override
-    public void sacar() {
+    public void sacar(double valor) {
 
     }
 
     @Override
-    public void investir() {
+    public void investir(double valor) {
 
     }
 }
