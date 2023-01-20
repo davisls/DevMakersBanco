@@ -20,4 +20,11 @@ public class ContaPoupanca extends Conta implements IConta {
     public void investir(double valor) {
 
     }
+
+    @Override
+    public void transferir(double valor, IConta contaDestino) {
+
+    }
+
+
 }
