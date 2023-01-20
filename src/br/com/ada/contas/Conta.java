@@ -34,7 +34,5 @@ public abstract class Conta {
         this.saldo = saldo;
     }
 
-    public void transferencia(double saldo) {
 
-    }
 }

@@ -25,4 +25,8 @@ public abstract class Cliente {
     public void adicionarConta(Conta conta) {
         this.contas.add(conta);
     }
+
+    public List<Conta> getContas() {
+        return contas;
+    }
 }
