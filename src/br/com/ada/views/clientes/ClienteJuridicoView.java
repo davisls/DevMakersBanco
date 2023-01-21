@@ -4,7 +4,7 @@ import br.com.ada.banco.Banco;
 import br.com.ada.clientes.Cliente;
 import br.com.ada.views.View;
 
-public class ClienteJuridicoView extends View {
+public class ClienteJuridicoView extends View implements IClienteView {
     private static final ClienteJuridicoView INSTANCE = new ClienteJuridicoView();
 
     public static ClienteJuridicoView getInstance() {
