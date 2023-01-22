@@ -9,6 +9,7 @@ public class ClienteFisico extends Cliente implements IAdicionarConta {
     public ClienteFisico(String nome, String senha, String cpf) {
         super(nome, senha);
         this.cpf = cpf;
+        super.setTipoCliente(TipoCliente.FISICO);
     }
 
     public String getCpf() {

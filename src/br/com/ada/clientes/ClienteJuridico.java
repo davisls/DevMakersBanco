@@ -9,6 +9,7 @@ public class ClienteJuridico extends Cliente implements IAdicionarConta,ICliente
     public ClienteJuridico(String nome, String senha, String cnpj) {
         super(nome, senha);
         this.cnpj = cnpj;
+        super.setTipoCliente(TipoCliente.JURIDICO);
     }
 
     public String getCnpj() {

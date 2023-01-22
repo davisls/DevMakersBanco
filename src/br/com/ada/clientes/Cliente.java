@@ -9,6 +9,8 @@ public abstract class Cliente implements ICliente{
     private String senha;
     private List<Conta> contas;
 
+    private TipoCliente tipoCliente;
+
     public Cliente(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
@@ -28,5 +30,13 @@ public abstract class Cliente implements ICliente{
 
     public List<Conta> getContas() {
         return contas;
+    }
+
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(TipoCliente tipoCliente) {
+        this.tipoCliente = tipoCliente;
     }
 }
