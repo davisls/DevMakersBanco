@@ -51,4 +51,12 @@ public class Banco {
         ContaPoupanca contaPoupanca = new ContaPoupanca(cliente);
         cliente.adicionarConta(contaPoupanca);
     }
+
+    public List<Cliente> getClienteList() {
+        return clienteList;
+    }
+
+    public void setClienteList(List<Cliente> clienteList) {
+        this.clienteList = clienteList;
+    }
 }

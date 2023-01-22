@@ -4,7 +4,7 @@ import br.com.ada.contas.Conta;
 
 import java.util.List;
 
-public abstract class Cliente {
+public abstract class Cliente implements ICliente{
     private String nome;
     private String senha;
     private List<Conta> contas;
