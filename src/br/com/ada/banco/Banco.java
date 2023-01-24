@@ -26,6 +26,7 @@ public class Banco {
 
     public void menu() {
         BancoView.getInstance().menuInicial();
+        //todo - discutir nome do método. 'iniciar' talvez?
     }
 
     public void adicionarClienteNaLista(Cliente cliente){
@@ -57,5 +58,10 @@ public class Banco {
 
     public void setClienteList(List<Cliente> clienteList) {
         this.clienteList = clienteList;
+    }
+
+    public void cadastrarCliente(Cliente cliente) {
+        adicionarClienteNaLista(cliente);
+        criaContaCorrente(cliente);
     }
 }

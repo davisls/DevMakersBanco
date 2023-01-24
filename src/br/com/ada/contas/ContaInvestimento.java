@@ -18,7 +18,7 @@ public class ContaInvestimento extends Conta implements IConta {
 
     @Override
     public void investir(double valor) {
-
+        //não vai existir aqui com a aplicação das interfaces para investimento
     }
 
     @Override
