@@ -1,8 +1,6 @@
 package br.com.ada.banco;
 
 import br.com.ada.clientes.Cliente;
-import br.com.ada.clientes.ClienteFisico;
-import br.com.ada.clientes.ClienteJuridico;
 import br.com.ada.contas.ContaCorrente;
 import br.com.ada.contas.ContaInvestimento;
 import br.com.ada.contas.ContaPoupanca;
@@ -10,10 +8,11 @@ import br.com.ada.views.banco.BancoView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Banco {
     private List<Cliente> clienteList = new ArrayList<>();
+
+    public int contador = 0;
 
     private static final Banco INSTANCE = new Banco(new ArrayList<>());
 

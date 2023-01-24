@@ -1,10 +1,13 @@
 package br.com.ada.clientes;
 
+import br.com.ada.banco.Banco;
 import br.com.ada.contas.Conta;
 
 import java.util.List;
 
 public abstract class Cliente implements ICliente{
+
+    private String id;
     private String nome;
     private String senha;
     private List<Conta> contas;
@@ -14,6 +17,7 @@ public abstract class Cliente implements ICliente{
     public Cliente(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
+        this.id = String.valueOf(++Banco.getInstance().contador);
     }
 
     public String getNome() {
@@ -38,5 +42,9 @@ public abstract class Cliente implements ICliente{
 
     public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
+    }
+
+    public String getId() {
+        return id;
     }
 }

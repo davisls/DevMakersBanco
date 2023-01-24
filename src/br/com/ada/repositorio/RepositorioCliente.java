@@ -5,7 +5,6 @@ import br.com.ada.clientes.Cliente;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class RepositorioCliente implements IRepositorioCliente<Cliente>{
 
@@ -18,6 +17,13 @@ public class RepositorioCliente implements IRepositorioCliente<Cliente>{
     @Override
     public List<Cliente> retornarTodos() {
         return Banco.getInstance().getClienteList();
+    }
+
+    @Override
+    public Cliente retornarUmElemento(String id) {
+        return retornarTodos().stream().filter(cliente -> cliente.getId().equalsIgnoreCase(id))
+                .findFirst()
+                .orElseThrow();
     }
 
     @Override

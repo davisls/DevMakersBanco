@@ -3,7 +3,7 @@ package br.com.ada.clientes;
 import br.com.ada.contas.IAdicionarConta;
 import br.com.ada.views.clientes.ClienteFisicoView;
 
-public class ClienteFisico extends Cliente implements IAdicionarConta {
+public class ClienteFisico extends Cliente implements IAdicionarConta,IClienteFisico {
     private String cpf;
 
     public ClienteFisico(String nome, String senha, String cpf) {
