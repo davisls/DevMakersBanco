@@ -25,10 +25,11 @@ public class ContaCorrente extends Conta implements IConta {
 
         double saqueComTaxa = valor + (valor * taxa);
         //imagino q a taxa de saque é aplicada sobre o valor de saque (ou é ao saldo?)
+        //todo - separar em um outro método essa validação de saldo suficiente
         if (saqueComTaxa > getSaldo()) {
             System.out.println("saldo indisponível");
             return;
-            //acho que seria melhor criar e jogar uma exceção aqui...
+            //todo - fazer exceção
         }
 
         this.setSaldo(this.getSaldo() - saqueComTaxa);
@@ -36,20 +37,7 @@ public class ContaCorrente extends Conta implements IConta {
 
     @Override
     public void investir(double valor) {
-        ContaInvestimento contaDestino = null;
-
-        for (Conta conta : getCliente().getContas()) {
-            if (conta instanceof ContaInvestimento) {
-                contaDestino = (ContaInvestimento) conta;
-                transferir(valor, contaDestino);
-                break;
-            }
-        }
-
-        if (contaDestino == null) {
-            System.out.println("Você não possui uma Conta Investimento");
-        }
-
+        //vai mudar com as interfaces
     }
 
     @Override
