@@ -3,6 +3,7 @@ package br.com.ada.clientes;
 import br.com.ada.banco.Banco;
 import br.com.ada.contas.Conta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Cliente implements ICliente{
@@ -10,7 +11,7 @@ public abstract class Cliente implements ICliente{
     private String id;
     private String nome;
     private String senha;
-    private List<Conta> contas;
+    private List<Conta> contas = new ArrayList<>();
 
     private TipoCliente tipoCliente;
 
