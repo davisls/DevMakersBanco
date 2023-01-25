@@ -2,8 +2,17 @@ package br.com.ada.views.clientes;
 
 import br.com.ada.banco.Banco;
 import br.com.ada.clientes.Cliente;
+import br.com.ada.contas.Conta;
+import br.com.ada.contas.ContaCorrente;
+import br.com.ada.contas.ContaInvestimento;
 import br.com.ada.contas.TipoConta;
+import br.com.ada.repositorio.conta.RepositorioContaCorrente;
+import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
 import br.com.ada.views.View;
+import br.com.ada.views.contas.ContaCorrenteView;
+import br.com.ada.views.contas.ContaInvestimentoView;
+
+import java.util.Optional;
 
 public class ClienteJuridicoView extends View implements IClienteView {
     private static final ClienteJuridicoView INSTANCE = new ClienteJuridicoView();
@@ -29,10 +38,12 @@ public class ClienteJuridicoView extends View implements IClienteView {
 
         switch (tipoConta){
             case 1:
-                System.out.println("chamar menu conta corrente");
+                ContaCorrente cc = RepositorioContaCorrente.getInstance().retornarContaCorrente(cliente);
+                ContaCorrenteView.getInstance().menuInicial(cc);
                 break;
             case 2:
-                System.out.println("chamar menu conta investimento");
+                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(cliente);
+                ContaInvestimentoView.getInstance().menuInicial(ci);
                 break;
             case 3:
                 menuAdicionarConta(cliente);
