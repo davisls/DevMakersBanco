@@ -1,9 +1,12 @@
 package br.com.ada.banco;
 
 import br.com.ada.clientes.Cliente;
+import br.com.ada.clientes.ClienteFisico;
+import br.com.ada.clientes.ClienteJuridico;
 import br.com.ada.contas.ContaCorrente;
 import br.com.ada.contas.ContaInvestimento;
 import br.com.ada.contas.ContaPoupanca;
+import br.com.ada.repositorio.RepositorioCliente;
 import br.com.ada.views.banco.BancoView;
 
 import java.util.ArrayList;
@@ -24,13 +27,12 @@ public class Banco {
         return INSTANCE;
     }
 
-    public void menu() {
+    public void iniciar() {
         BancoView.getInstance().menuInicial();
-        //todo - discutir nome do método. 'iniciar' talvez?
     }
 
     public void adicionarClienteNaLista(Cliente cliente){
-        clienteList.add(cliente);
+        RepositorioCliente.getInstance().adicionar(cliente);
     }
 
     public void removerClienteNaLista(Cliente cliente){
@@ -63,5 +65,15 @@ public class Banco {
     public void cadastrarCliente(Cliente cliente) {
         adicionarClienteNaLista(cliente);
         criaContaCorrente(cliente);
+    }
+
+    public ClienteFisico criarClienteFisico(String nome, String senha, String cpf){
+        ClienteFisico cliente = new ClienteFisico(nome, senha, cpf);
+        return cliente;
+    }
+
+    public ClienteJuridico criarClienteJuridico(String nome, String senha, String cnpj){
+        ClienteJuridico cliente = new ClienteJuridico(nome,senha,cnpj);
+        return cliente;
     }
 }
