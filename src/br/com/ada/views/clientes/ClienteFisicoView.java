@@ -12,18 +12,20 @@ public class ClienteFisicoView extends View implements IClienteView {
     }
 
     public void menuAdicionarConta(Cliente cliente) {
-        System.out.println("Por favor selecione o modelo de conta que deseja abrir:");
-        System.out.println("Digite P para Conta Poupança");
-        System.out.println("Digite I para Conta Investimento");
-        String opcaoAbrirConta = sc.nextLine();
-
-        if (opcaoAbrirConta.equalsIgnoreCase("P")) {
-            Banco.getInstance().criaContaPoupanca(cliente);
-        } else if (opcaoAbrirConta.equalsIgnoreCase("I")) {
-            Banco.getInstance().criaContaInvestimento(cliente);
-        } else {
-            System.out.println("Opção inválida, por favor digite novamente");
-            menuAdicionarConta(cliente);
+        System.out.println("selecione o modelo de conta que deseja abrir:");
+        System.out.println("Digite 1 para Conta Poupança.");
+        System.out.println("Digite 2 para Conta Investimento.");
+        int tipoConta = Integer.parseInt(sc.nextLine());
+        switch (tipoConta){
+            case 1:
+                Banco.getInstance().criaContaPoupanca(cliente);
+                break;
+            case 2:
+                Banco.getInstance().criaContaInvestimento(cliente);
+                break;
+            default:
+                System.out.println("Opção inválida, por favor digite novamente");
+                menuAdicionarConta(cliente);
         }
     }
 }
