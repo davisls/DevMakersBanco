@@ -9,6 +9,7 @@ public class ContaCorrente extends Conta implements IConta {
 
     public ContaCorrente(Cliente cliente) {
         super(cliente);
+        super.setTipoConta(TipoConta.CORRENTE);
     }
 
     @Override

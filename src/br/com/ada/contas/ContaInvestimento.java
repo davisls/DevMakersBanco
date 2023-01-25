@@ -5,6 +5,7 @@ import br.com.ada.clientes.Cliente;
 public class ContaInvestimento extends Conta implements IConta {
     public ContaInvestimento(Cliente cliente) {
         super(cliente);
+        super.setTipoConta(TipoConta.INVESTIMENTO);
     }
     @Override
     public void depositar(double valor) {

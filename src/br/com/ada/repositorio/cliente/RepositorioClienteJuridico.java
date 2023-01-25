@@ -1,4 +1,4 @@
-package br.com.ada.repositorio;
+package br.com.ada.repositorio.cliente;
 
 import br.com.ada.clientes.ClienteJuridico;
 import br.com.ada.clientes.TipoCliente;

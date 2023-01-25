@@ -6,7 +6,7 @@ import br.com.ada.clientes.ClienteJuridico;
 import br.com.ada.contas.ContaCorrente;
 import br.com.ada.contas.ContaInvestimento;
 import br.com.ada.contas.ContaPoupanca;
-import br.com.ada.repositorio.RepositorioCliente;
+import br.com.ada.repositorio.cliente.RepositorioCliente;
 import br.com.ada.views.banco.BancoView;
 
 import java.util.ArrayList;
