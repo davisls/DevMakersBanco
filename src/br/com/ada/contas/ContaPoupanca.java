@@ -5,6 +5,7 @@ import br.com.ada.clientes.Cliente;
 public class ContaPoupanca extends Conta implements IConta {
     public ContaPoupanca(Cliente cliente) {
         super(cliente);
+        super.setTipoConta(TipoConta.POUPANCA);
     }
     @Override
     public void depositar(double valor) {

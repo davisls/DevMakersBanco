@@ -8,6 +8,8 @@ public abstract class Conta {
     private Cliente cliente;
     private double saldo;
 
+    private TipoConta tipoConta;
+
     public Conta(Cliente cliente) {
         this.cliente = cliente;
         this.numeroConta = (int)(Math.random() * 99999) + 10000;
@@ -34,5 +36,12 @@ public abstract class Conta {
         this.saldo = saldo;
     }
 
+    public TipoConta getTipoConta() {
+        return tipoConta;
+    }
+
+    public void setTipoConta(TipoConta tipoConta) {
+        this.tipoConta = tipoConta;
+    }
 
 }
