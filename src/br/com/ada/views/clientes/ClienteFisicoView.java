@@ -83,9 +83,11 @@ public class ClienteFisicoView extends View implements IClienteView {
         switch (tipoConta){
             case 1:
                 Banco.getInstance().criaContaInvestimento(cliente);
+                System.out.println("Conta investimento criada com sucesso!");
                 break;
             case 2:
                 Banco.getInstance().criaContaPoupanca(cliente);
+                System.out.println("Conta poupança criada com sucesso!");
                 break;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");
