@@ -7,6 +7,8 @@ import br.com.ada.clientes.ClienteJuridico;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
 import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
 import br.com.ada.views.View;
+import br.com.ada.views.clientes.ClienteFisicoView;
+import br.com.ada.views.clientes.ClienteJuridicoView;
 
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class BancoView extends View {
     public void menuInicial() {
         boolean sair = false;
         do {
+            System.out.println("");
             System.out.println("Bem vindo ao Banco");
             System.out.println("Digite 1 para abrir conta.");
             System.out.println("Digite 2 para acessar sua conta.");
@@ -31,10 +34,7 @@ public class BancoView extends View {
                     menuCadastro();
                     break;
                 case 2:
-                    //todo - criar função nessa classe para login
                     menuLogin();
-                    // depois do login deverá chamar um menu do cliente
-                    System.out.println("Foi escolhida a opção acessar conta");
                     break;
                 case 3:
                     sair = true;
@@ -42,11 +42,12 @@ public class BancoView extends View {
                 default:
                     System.out.println("Opção inválida, por favor digite novamente");
             }
-        } while (!sair);
+        } while(!sair);
     }
 
     public void menuCadastro() {
-
+        System.out.println("");
+        System.out.println("Cadastro");
         System.out.println("Digite o seu nome:");
         String nome = sc.nextLine();
         System.out.println("Digite sua senha:");
@@ -68,13 +69,13 @@ public class BancoView extends View {
                 Banco.getInstance().cadastrarCliente(clienteFisico);
                 break;
             case 3:
-                menuInicial();
+                return;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");
                 menuCadastro();
         }
         // todo - validar se a senha criada tem um tamanho especifico ou algo assim??
-        }
+    }
 
     private String pedirCpf() {
         System.out.println("Digite o seu cpf:");
@@ -91,6 +92,8 @@ public class BancoView extends View {
     }
 
     private void menuLogin() {
+        System.out.println("");
+        System.out.println("Login");
         System.out.println("Selecione se você é pessoa jurídica ou física:");
         System.out.println("Digite 1 para pessoa jurídica.");
         System.out.println("Digite 2 para pessoa física.");
@@ -105,44 +108,21 @@ public class BancoView extends View {
                 menuLoginClienteFisico();
                 break;
             case 3:
-                menuInicial();
+                return;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");
-                menuCadastro();
+                menuLogin();
         }
 
-    }
-
-    //todo - onde colocar esses dois métodos?
-    private boolean isCnpjCadastrado(String cnpj) {
-        boolean isCnpjCadastrado = false;
-        List<ClienteJuridico> clientes = RepositorioClienteJuridico.getInstance().retornarClientesJuridico();
-        for (ClienteJuridico cliente : clientes) {
-            if (cliente.getCnpj() == cnpj) {
-                isCnpjCadastrado = true;
-            }
-        }
-        return isCnpjCadastrado;
-    }
-    private boolean isCpfCadastrado(String cpf) {
-        boolean isCpfCadastrado = false;
-        List<ClienteFisico> clientes = RepositorioClienteFisico.getInstance().retornarClientesFisico();
-        for (ClienteFisico cliente : clientes) {
-            if (cliente.getCpf() == cpf) {
-                isCpfCadastrado = true;
-            }
-        }
-        return isCpfCadastrado;
     }
 
     private void menuLoginClienteJuridico() {
         String cnpj = pedirCnpj();
         if (!isCnpjCadastrado(cnpj)) {
-            //exceção cnpj não cadastrado
-            System.out.println("esse cnpj não esta cadastrado");
+            //todo - exceção cnpj não cadastrado
+            System.out.println("esse cnpj não esta cadastrado!");
             return;
         }
-
         ClienteJuridico cliente = RepositorioClienteJuridico.getInstance().retornarClientePorCnpj(cnpj);
 
         System.out.println("Digite sua senha:");
@@ -150,19 +130,19 @@ public class BancoView extends View {
         if (!cliente.verificaSenha(senhaInserida)) {
             //todo - exceção para senha errada
             System.out.println("senha inválida");
+            return;
         }
         System.out.println("cliente juridico logado");
-        //menuInicialClienteJuridico(Cliente)
+        ClienteJuridicoView.getInstance().menuInicial(cliente);
     }
 
     private void menuLoginClienteFisico() {
         String cpf = pedirCpf();
         if (!isCpfCadastrado(cpf)) {
-            //exceção cpf não cadastrado
-            System.out.println("esse cpf não esta cadastrado");
+            //todo - exceção cpf não cadastrado
+            System.out.println("esse cpf não esta cadastrado!");
             return;
         }
-
         ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
 
         System.out.println("Digite sua senha:");
@@ -170,10 +150,32 @@ public class BancoView extends View {
         if (!cliente.verificaSenha(senhaInserida)) {
             //todo - exceção para senha errada
             System.out.println("senha inválida");
+            return;
         }
         System.out.println("cliente fisico logado");
-        //menuInicialClienteFisico(Cliente)
+        ClienteFisicoView.getInstance().menuInicial(cliente);
     }
 
+
+    //todo - onde colocar esses dois métodos? (isCnpjCadastrado e isCpfCadastrado)
+    private boolean isCnpjCadastrado(String cnpj) {
+        List<ClienteJuridico> clientes = RepositorioClienteJuridico.getInstance().retornarClientesJuridico();
+        for (ClienteJuridico cliente : clientes) {
+            if (cliente.getCnpj().equals(cnpj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isCpfCadastrado(String cpf) {
+        List<ClienteFisico> clientes = RepositorioClienteFisico.getInstance().retornarClientesFisico();
+        for (ClienteFisico cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
