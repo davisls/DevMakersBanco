@@ -17,14 +17,22 @@ public class Aplicacao {
         RepositorioClienteFisico.getInstance().adicionar(cliente);
         ContaCorrente cc = new ContaCorrente(cliente);
         RepositorioContaCorrente.getInstance().adiconarConta(cliente, cc);
+        System.out.println(cc.getNumeroConta());
         ContaInvestimento ci = new ContaInvestimento(cliente);
         RepositorioContaInvestimento.getInstance().adiconarConta(cliente, ci);
+        System.out.println(ci.getNumeroConta());
 
-        ClienteJuridico bethania = new ClienteJuridico("Bethania", "000", "321");
-        RepositorioClienteJuridico.getInstance().adicionar(bethania);
-        ContaCorrente conta = new ContaCorrente(bethania);
-        RepositorioContaCorrente.getInstance().adiconarConta(bethania, conta);
+        cc.depositar(100);
+        cc.transferir(10,ci.getNumeroConta());
 
-        Banco.getInstance().iniciar();
+        System.out.println(cc.getSaldo());
+        System.out.println(ci.getSaldo());
+
+//        ClienteJuridico bethania = new ClienteJuridico("Bethania", "000", "321");
+//        RepositorioClienteJuridico.getInstance().adicionar(bethania);
+//        ContaCorrente conta = new ContaCorrente(bethania);
+//        RepositorioContaCorrente.getInstance().adiconarConta(bethania, conta);
+//
+//        Banco.getInstance().iniciar();
     }
 }

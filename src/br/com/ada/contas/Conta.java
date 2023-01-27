@@ -5,6 +5,8 @@ import br.com.ada.clientes.TipoCliente;
 import br.com.ada.repositorio.cliente.RepositorioCliente;
 import br.com.ada.repositorio.conta.RepositorioConta;
 
+import java.util.List;
+
 public abstract class Conta implements IConta {
 
     private String numeroConta;
@@ -17,7 +19,7 @@ public abstract class Conta implements IConta {
 
     public Conta(Cliente cliente) {
         this.cliente = cliente;
-        this.numeroConta = String.valueOf((Math.random() * 99999) + 10000);
+        this.numeroConta = String.valueOf(((int) (Math.random() * 99999) + 10000));
         this.saldo = 0;
         this.taxaSaque = (cliente.getTipoCliente() == TipoCliente.FISICO ? 0 : 0.005);
     }
@@ -84,8 +86,15 @@ public abstract class Conta implements IConta {
     }
 
     @Override
-    public void transferir(double valor, Conta contaDestino) {
+    public void transferir(double valor, String numeroContaDestino) {
         this.sacar(valor);
+
+        Conta contaDestino = null;
+        List<Cliente> clientes = RepositorioCliente.getInstance().retornarTodos();
+        for (Cliente clienteCadastrado : clientes) {
+            Conta conta = RepositorioConta.getInstance().retornarContaPorNumero(clienteCadastrado, numeroContaDestino);
+            if (conta != null) contaDestino = conta;
+        }
         contaDestino.depositar(valor);
     }
 

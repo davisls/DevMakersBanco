@@ -16,6 +16,6 @@ public class ContaCorrente extends Conta implements IInvestimento {
 
     @Override
     public void investir(double valor, Conta contaDestino) {
-        transferir(valor, contaDestino);
+        // transferir(valor, contaDestino);
     }
 }
