@@ -68,12 +68,10 @@ public class Banco {
     }
 
     public ClienteFisico criarClienteFisico(String nome, String senha, String cpf){
-        ClienteFisico cliente = new ClienteFisico(nome, senha, cpf);
-        return cliente;
+        return new ClienteFisico(nome, senha, cpf);
     }
 
     public ClienteJuridico criarClienteJuridico(String nome, String senha, String cnpj){
-        ClienteJuridico cliente = new ClienteJuridico(nome,senha,cnpj);
-        return cliente;
+        return new ClienteJuridico(nome,senha,cnpj);
     }
 }
