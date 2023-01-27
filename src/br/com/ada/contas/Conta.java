@@ -2,10 +2,12 @@ package br.com.ada.contas;
 
 import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.TipoCliente;
+import br.com.ada.repositorio.cliente.RepositorioCliente;
+import br.com.ada.repositorio.conta.RepositorioConta;
 
 public abstract class Conta implements IConta {
 
-    private int numeroConta;
+    private String numeroConta;
     private Cliente cliente;
     private double saldo;
     private double taxaSaque;
@@ -15,12 +17,12 @@ public abstract class Conta implements IConta {
 
     public Conta(Cliente cliente) {
         this.cliente = cliente;
-        this.numeroConta = (int)(Math.random() * 99999) + 10000;
+        this.numeroConta = String.valueOf((Math.random() * 99999) + 10000);
         this.saldo = 0;
         this.taxaSaque = (cliente.getTipoCliente() == TipoCliente.FISICO ? 0 : 0.005);
     }
 
-    public int getNumeroConta() {
+    public String getNumeroConta() {
         return numeroConta;
     }
 
@@ -70,12 +72,6 @@ public abstract class Conta implements IConta {
 
     @Override
     public void sacar(double valor) {
-        //double taxa = 0;
-
-//        if (this.getCliente().getTipoCliente() == TipoCliente.JURIDICO) {
-//            taxa = 0.005;
-//        }
-
         double saqueComTaxa = valor + (valor * this.getTaxaSaque());
         //todo - separar em um outro método essa validação de saldo suficiente
         if (saqueComTaxa > getSaldo()) {
@@ -86,8 +82,6 @@ public abstract class Conta implements IConta {
 
         this.setSaldo(this.getSaldo() - saqueComTaxa);
     }
-
-
 
     @Override
     public void transferir(double valor, Conta contaDestino) {

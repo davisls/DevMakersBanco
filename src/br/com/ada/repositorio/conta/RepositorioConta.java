@@ -19,7 +19,7 @@ public class RepositorioConta implements IRepositorioConta{
 
     @Override
     public Conta retornarContaPorNumero(Cliente cliente, String numeroConta) {
-        return retornarContaPorCliente(cliente).stream().filter(conta -> conta.getNumeroConta() == Integer.parseInt(numeroConta))
+        return retornarContaPorCliente(cliente).stream().filter(conta -> conta.getNumeroConta().equalsIgnoreCase(numeroConta))
                 .findFirst()
                 .orElse(null);
     }
