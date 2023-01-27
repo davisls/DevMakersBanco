@@ -87,15 +87,20 @@ public abstract class Conta implements IConta {
 
     @Override
     public void transferir(double valor, String numeroContaDestino) {
-        this.sacar(valor);
 
         Conta contaDestino = null;
         List<Cliente> clientes = RepositorioCliente.getInstance().retornarTodos();
         for (Cliente clienteCadastrado : clientes) {
             Conta conta = RepositorioConta.getInstance().retornarContaPorNumero(clienteCadastrado, numeroContaDestino);
-            if (conta != null) contaDestino = conta;
+            if (conta != null) {
+                contaDestino = conta;
+                this.sacar(valor);
+                contaDestino.depositar(valor);
+            }
         }
-        contaDestino.depositar(valor);
+
+        if (contaDestino == null) System.out.println("Essa conta não existe");
+
     }
 
 }

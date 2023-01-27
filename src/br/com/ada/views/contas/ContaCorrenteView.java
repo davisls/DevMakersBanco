@@ -119,5 +119,11 @@ public class ContaCorrenteView extends View {
 
     public void menuTransferencia(ContaCorrente conta) {
         //todo implementar metodo
+        System.out.println("Digite o valor que vai ser transferido:");
+        double valorParaTransferencia = Double.parseDouble(sc.nextLine());
+        System.out.println("Digite o número da conta para qual você quer transferir o dinheiro:");
+        String numeroContaDestino = sc.nextLine();
+
+        conta.transferir(valorParaTransferencia,numeroContaDestino);
     }
 }

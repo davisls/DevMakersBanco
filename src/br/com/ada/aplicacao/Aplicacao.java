@@ -17,22 +17,18 @@ public class Aplicacao {
         RepositorioClienteFisico.getInstance().adicionar(cliente);
         ContaCorrente cc = new ContaCorrente(cliente);
         RepositorioContaCorrente.getInstance().adiconarConta(cliente, cc);
-        System.out.println(cc.getNumeroConta());
         ContaInvestimento ci = new ContaInvestimento(cliente);
         RepositorioContaInvestimento.getInstance().adiconarConta(cliente, ci);
-        System.out.println(ci.getNumeroConta());
 
-        cc.depositar(100);
-        cc.transferir(10,ci.getNumeroConta());
+        ClienteJuridico bethania = new ClienteJuridico("Bethania", "000", "321");
+        RepositorioClienteJuridico.getInstance().adicionar(bethania);
+        ContaCorrente conta = new ContaCorrente(bethania);
+        RepositorioContaCorrente.getInstance().adiconarConta(bethania, conta);
 
-        System.out.println(cc.getSaldo());
-        System.out.println(ci.getSaldo());
+        System.out.println(cc.getCliente().getNome() + " - número da conta corrente: " + cc.getNumeroConta());
+        System.out.println(ci.getCliente().getNome() + " - número da conta investimento: " + ci.getNumeroConta());
+        System.out.println(conta.getCliente().getNome() + " - número da conta corrente: " +conta.getNumeroConta());
 
-//        ClienteJuridico bethania = new ClienteJuridico("Bethania", "000", "321");
-//        RepositorioClienteJuridico.getInstance().adicionar(bethania);
-//        ContaCorrente conta = new ContaCorrente(bethania);
-//        RepositorioContaCorrente.getInstance().adiconarConta(bethania, conta);
-//
-//        Banco.getInstance().iniciar();
+        Banco.getInstance().iniciar();
     }
 }

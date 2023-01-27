@@ -13,7 +13,7 @@ public class ContaPoupanca extends Conta implements IInvestimento {
 
     @Override
     public void investir(double valor, Conta contaDestino) {
-        // transferir(valor, contaDestino);
+         transferir(valor, contaDestino.getNumeroConta());
     }
 
 }
