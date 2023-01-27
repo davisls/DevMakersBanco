@@ -16,7 +16,7 @@ public class ContaInvestimentoView extends View {
         System.out.println("Digite 1 para consultar o saldo.");
         System.out.println("Digite 2 para realizar um saque.");
         System.out.println("Digite 3 para realizar um depósito.");
-        System.out.println("Digite 4 para realizar uma transfrência.");
+        System.out.println("Digite 4 para realizar uma transferência.");
 
         int tipoConta = Integer.parseInt(sc.nextLine());
 
@@ -57,10 +57,10 @@ public class ContaInvestimentoView extends View {
     }
 
     public void menuInvestimento(ContaInvestimento conta) {
-
+        //todo - fazer!!
     }
 
     public void menuTransferencia(ContaInvestimento conta) {
-
+        //todo - fazer!!
     }
 }

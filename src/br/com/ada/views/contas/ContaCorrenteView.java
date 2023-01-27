@@ -15,6 +15,9 @@ public class ContaCorrenteView extends View {
         return INSTANCE;
     }
 
+
+    //todo - esse menu tem que retornar para o menu das opções de conta (já logado),
+    // isso vale para os outros menus iniciais dos outros tipos de conta
     public void menuInicial(ContaCorrente conta) {
         boolean sair = false;
         do {
@@ -31,29 +34,24 @@ public class ContaCorrenteView extends View {
             switch (tipoConta) {
                 case 1:
                     menuSaldo(conta);
-                    menuInicial(conta);
                     break;
                 case 2:
                     menuSaque(conta);
-                    menuInicial(conta);
                     break;
                 case 3:
                     menuDeposito(conta);
-                    menuInicial(conta);
                     break;
                 case 4:
                     menuInvestimento(conta);
-                    menuInicial(conta);
                     break;
                 case 5:
                     menuTransferencia(conta);
-                    menuInicial(conta);
                     break;
                 case 6:
-                    BancoView.getInstance().menuInicial();
+                    sair = true;
+                    break;
                 default:
                     System.out.println("Opção inválida, por favor digite novamente");
-                    menuInicial(conta);
             }
         } while (!sair);
     }
@@ -105,12 +103,12 @@ public class ContaCorrenteView extends View {
 
         switch (tipoConta){
             case 1:
-                ContaPoupanca cp = RepositorioContaPoupanca.getInstance().retornarContaPoupanca(conta.getCliente());
-                cp.investir(valorInvestimento);
+                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(conta.getCliente());
+                conta.investir(valorInvestimento, ci);
                 break;
             case 2:
-                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(conta.getCliente());
-                ci.investir(valorInvestimento);
+                ContaPoupanca cp = RepositorioContaPoupanca.getInstance().retornarContaPoupanca(conta.getCliente());
+                conta.investir(valorInvestimento, cp);
                 break;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");

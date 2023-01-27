@@ -79,8 +79,8 @@ public class ContaPoupancaView extends View {
 
         switch (tipoConta){
             case 1:
-                ContaPoupanca cp = RepositorioContaPoupanca.getInstance().retornarContaPoupanca(conta.getCliente());
-                cp.investir(valorInvestimento);
+                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(conta.getCliente());
+                conta.investir(valorInvestimento, ci);
                 break;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");
