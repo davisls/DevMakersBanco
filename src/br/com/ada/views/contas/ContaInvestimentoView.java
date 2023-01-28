@@ -31,7 +31,7 @@ public class ContaInvestimentoView extends View {
                 menuDeposito(conta);
                 break;
             case 4:
-                menuInvestimento(conta);
+                menuTransferencia(conta);
                 break;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");
@@ -56,11 +56,9 @@ public class ContaInvestimentoView extends View {
         conta.depositar(valorDeposito);
     }
 
-    public void menuInvestimento(ContaInvestimento conta) {
-        //todo - fazer!!
-    }
-
     public void menuTransferencia(ContaInvestimento conta) {
-        //todo - fazer!!
+        System.out.println("Quanto deseja depositar?");
+        double valorDeposito = Double.parseDouble(sc.nextLine());
+        conta.depositar(valorDeposito);
     }
 }
