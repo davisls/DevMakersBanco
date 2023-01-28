@@ -32,7 +32,7 @@ public class ContaCorrenteView extends View {
             System.out.println("Digite 5 para realizar uma transfêrencia.");
             System.out.println("Digite 6 para retornar ao menu anterior");
 
-            int tipoConta = Integer.parseInt(sc.nextLine());
+            int tipoConta = getInt();
 
             switch (tipoConta) {
                 case 1:
@@ -62,7 +62,7 @@ public class ContaCorrenteView extends View {
     public void menuSaque(ContaCorrente conta) {
         menuSaldo(conta);
         System.out.println("Quanto deseja sacar?");
-        double valorSaque = Double.parseDouble(sc.nextLine());
+        double valorSaque = getDouble();
         conta.sacar(valorSaque);
         System.out.println();
 
@@ -75,7 +75,7 @@ public class ContaCorrenteView extends View {
 
     public void menuDeposito(ContaCorrente conta) {
         System.out.println("Quanto deseja depositar?");
-        double valorDeposito = Double.parseDouble(sc.nextLine());
+        double valorDeposito = getDouble();
         conta.depositar(valorDeposito);
         System.out.println();
     }
@@ -99,10 +99,10 @@ public class ContaCorrenteView extends View {
             menuInicial(conta);
         }
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
+        int tipoConta = getInt();
 
         System.out.println("Quanto deseja investir?");
-        double valorInvestimento = Double.parseDouble(sc.nextLine());
+        double valorInvestimento = getDouble();
 
         switch (tipoConta){
             case 1:
@@ -123,9 +123,9 @@ public class ContaCorrenteView extends View {
     public void menuTransferencia(ContaCorrente conta) {
         //todo implementar metodo
         System.out.println("Digite o valor que vai ser transferido:");
-        double valorParaTransferencia = Double.parseDouble(sc.nextLine());
+        double valorParaTransferencia = getDouble();
         System.out.println("Digite o número da conta para qual você quer transferir o dinheiro:");
-        String numeroContaDestino = sc.nextLine();
+        String numeroContaDestino = getString();
 
         conta.transferir(valorParaTransferencia,numeroContaDestino);
     }

@@ -27,8 +27,6 @@ public class ContaInvestimento extends Conta {
         this.setSaldo(this.getSaldo() - saque);
     }
 
-
-    @Override
     public void transferir(double valor, Conta contaDestino) {
         sacar(valor);
         contaDestino.depositar(valor);;

@@ -42,7 +42,7 @@ public class ClienteFisicoView extends View implements IClienteView {
             System.out.println("Digite 5 para retornar");
 
 
-            int tipoConta = Integer.parseInt(sc.nextLine());
+            int tipoConta = getInt();
 
             switch (tipoConta){
                 case 1:
@@ -87,7 +87,7 @@ public class ClienteFisicoView extends View implements IClienteView {
             System.out.println("Digite 2 para Conta Poupança.");
         }
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
+        int tipoConta = getInt();
 
         switch (tipoConta){
             case 1:
