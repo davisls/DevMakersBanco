@@ -1,6 +1,5 @@
 package br.com.ada.views.contas;
 
-import br.com.ada.clientes.Cliente;
 import br.com.ada.contas.*;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
 import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
@@ -122,13 +121,12 @@ public class ContaCorrenteView extends View {
     }
 
     public void menuTransferencia(ContaCorrente conta) {
-        System.out.println("Digite cpf ou cnpj da conta destino:");
-        String documento = sc.nextLine();
-        Cliente cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(documento);
-        if (cliente == null){
-            cliente = RepositorioClienteJuridico.getInstance().retornarClientePorCnpj(documento);
-        }
-        RepositorioConta.getInstance().retornarContaPorCliente(cliente);
-        //todo - textar método.
+        //todo implementar metodo
+        System.out.println("Digite o valor que vai ser transferido:");
+        double valorParaTransferencia = Double.parseDouble(sc.nextLine());
+        System.out.println("Digite o número da conta para qual você quer transferir o dinheiro:");
+        String numeroContaDestino = sc.nextLine();
+
+        conta.transferir(valorParaTransferencia,numeroContaDestino);
     }
 }
