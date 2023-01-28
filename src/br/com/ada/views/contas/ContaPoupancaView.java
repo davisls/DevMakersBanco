@@ -16,35 +16,40 @@ public class ContaPoupancaView extends View {
     }
 
     public void menuInicial(ContaPoupanca conta) {
-        System.out.println("Você está na sua conta poupança, o que deseja fazer?");
-        System.out.println("Digite 1 para consultar o saldo.");
-        System.out.println("Digite 2 para realizar um saque.");
-        System.out.println("Digite 3 para realizar um depósito.");
-        System.out.println("Digite 4 para realizar um investimento.");
-        System.out.println("Digite 5 para realizar uma transfrência.");
+        boolean sair = false;
+        do {
+            System.out.println("Você está na sua conta poupança, o que deseja fazer?");
+            System.out.println("Digite 1 para consultar o saldo.");
+            System.out.println("Digite 2 para realizar um saque.");
+            System.out.println("Digite 3 para realizar um depósito.");
+            System.out.println("Digite 4 para realizar um investimento.");
+            System.out.println("Digite 5 para realizar uma transferência.");
+            System.out.println("Digite 6 ppara retornar ao menu anterior");
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
+            int tipoConta = Integer.parseInt(sc.nextLine());
 
-        switch (tipoConta){
-            case 1:
-                menuSaldo(conta);
-                break;
-            case 2:
-                menuSaque(conta);
-                break;
-            case 3:
-                menuDeposito(conta);
-                break;
-            case 4:
-                menuInvestimento(conta);
-                break;
-            case 5:
-                menuTransferencia(conta);
-                break;
-            default:
-                System.out.println("Opção inválida, por favor digite novamente");
-                menuInicial(conta);
-        }
+            switch (tipoConta){
+                case 1:
+                    menuSaldo(conta);
+                    break;
+                case 2:
+                    menuSaque(conta);
+                    break;
+                case 3:
+                    menuDeposito(conta);
+                    break;
+                case 4:
+                    menuInvestimento(conta);
+                    break;
+                case 5:
+                    menuTransferencia(conta);
+                    break;
+                default:
+                    System.out.println("Opção inválida, por favor digite novamente");
+                    menuInicial(conta);
+            }
+        } while (!sair);
+
     }
 
     public void menuSaque(ContaPoupanca conta) {

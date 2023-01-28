@@ -1,6 +1,9 @@
 package br.com.ada.views.contas;
 
 import br.com.ada.contas.*;
+import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
+import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
+import br.com.ada.repositorio.conta.RepositorioConta;
 import br.com.ada.repositorio.conta.RepositorioContaCorrente;
 import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
 import br.com.ada.repositorio.conta.RepositorioContaPoupanca;
@@ -27,7 +30,7 @@ public class ContaCorrenteView extends View {
             System.out.println("Digite 3 para realizar um depósito.");
             System.out.println("Digite 4 para realizar um investimento.");
             System.out.println("Digite 5 para realizar uma transfêrencia.");
-            System.out.println("Digite 6 para sair");
+            System.out.println("Digite 6 para retornar ao menu anterior");
 
             int tipoConta = Integer.parseInt(sc.nextLine());
 
