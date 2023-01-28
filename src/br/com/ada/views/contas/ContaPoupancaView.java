@@ -26,7 +26,7 @@ public class ContaPoupancaView extends View {
             System.out.println("Digite 5 para realizar uma transferência.");
             System.out.println("Digite 6 ppara retornar ao menu anterior");
 
-            int tipoConta = Integer.parseInt(sc.nextLine());
+            int tipoConta = getInt();
 
             switch (tipoConta){
                 case 1:
@@ -55,7 +55,7 @@ public class ContaPoupancaView extends View {
     public void menuSaque(ContaPoupanca conta) {
         menuSaldo(conta);
         System.out.println("Quanto deseja sacar?");
-        double valorSaque = Double.parseDouble(sc.nextLine());
+        double valorSaque = getDouble();
         conta.sacar(valorSaque);
     }
 
@@ -65,7 +65,7 @@ public class ContaPoupancaView extends View {
 
     public void menuDeposito(ContaPoupanca conta) {
         System.out.println("Quanto deseja depositar?");
-        double valorDeposito = Double.parseDouble(sc.nextLine());
+        double valorDeposito = getDouble();
         conta.depositar(valorDeposito);
     }
 
@@ -77,10 +77,10 @@ public class ContaPoupancaView extends View {
 
         System.out.println("Digite 1 para investir na Conta Investimento");
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
+        int tipoConta = getInt();
 
         System.out.println("Quanto deseja investir?");
-        double valorInvestimento = Double.parseDouble(sc.nextLine());
+        double valorInvestimento = getDouble();
 
         switch (tipoConta){
             case 1:

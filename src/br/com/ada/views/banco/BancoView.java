@@ -28,7 +28,7 @@ public class BancoView extends View {
             System.out.println("Digite 1 para abrir conta.");
             System.out.println("Digite 2 para acessar sua conta.");
             System.out.println("Digite 3 para encerrar a sessão.");
-            int opcaoMenu = Integer.parseInt(sc.nextLine());
+            int opcaoMenu = getInt();
             switch (opcaoMenu) {
                 case 1:
                     menuCadastro();
@@ -49,16 +49,16 @@ public class BancoView extends View {
         System.out.println("");
         System.out.println("Cadastro");
         System.out.println("Digite o seu nome:");
-        String nome = sc.nextLine();
+        String nome = getString();
         System.out.println("Digite sua senha:");
-        String senha = sc.nextLine();
+        String senha = getString();
         //todo - vai ter alguma forma de validar nome??
 
         System.out.println("Selecione se você é pessoa jurídica ou física:");
         System.out.println("Digite 1 para pessoa jurídica.");
         System.out.println("Digite 2 para pessoa física.");
         System.out.println("Digite 3 para retornar ao menu inicial");
-        int tipoPessoa = Integer.parseInt(sc.nextLine());
+        int tipoPessoa = getInt();
         switch (tipoPessoa){
             case 1:
                 ClienteJuridico clienteJuridico = Banco.getInstance().criarClienteJuridico(nome,senha,pedirCnpj());
@@ -79,14 +79,14 @@ public class BancoView extends View {
 
     private String pedirCpf() {
         System.out.println("Digite o seu cpf:");
-        String cpf =  sc.nextLine();
+        String cpf =  getString();
         return cpf;
         //todo - validar cpf
     }
 
     private String pedirCnpj() {
         System.out.println("Digite o seu cnpj:");
-        String cnpj =  sc.nextLine();
+        String cnpj =  getString();
         return cnpj;
         //todo - validar cnpj
     }
@@ -98,7 +98,7 @@ public class BancoView extends View {
         System.out.println("Digite 1 para pessoa jurídica.");
         System.out.println("Digite 2 para pessoa física.");
         System.out.println("Digite 3 para retornar ao menu inicial");
-        int tipoPessoa = Integer.parseInt(sc.nextLine());
+        int tipoPessoa = getInt();
 
         switch (tipoPessoa){
             case 1:
@@ -126,7 +126,7 @@ public class BancoView extends View {
         ClienteJuridico cliente = RepositorioClienteJuridico.getInstance().retornarClientePorCnpj(cnpj);
 
         System.out.println("Digite sua senha:");
-        String senhaInserida = sc.nextLine();
+        String senhaInserida = getString();
         if (!cliente.verificaSenha(senhaInserida)) {
             //todo - exceção para senha errada
             System.out.println("senha inválida");
@@ -146,7 +146,7 @@ public class BancoView extends View {
         ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
 
         System.out.println("Digite sua senha:");
-        String senhaInserida = sc.nextLine();
+        String senhaInserida = getString();
         if (!cliente.verificaSenha(senhaInserida)) {
             //todo - exceção para senha errada
             System.out.println("senha inválida");

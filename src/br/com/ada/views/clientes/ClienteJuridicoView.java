@@ -34,7 +34,7 @@ public class ClienteJuridicoView extends View implements IClienteView {
 
         System.out.println("Digite 3 para criar uma conta.");
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
+        int tipoConta = getInt();
 
         switch (tipoConta){
             case 1:
@@ -63,7 +63,7 @@ public class ClienteJuridicoView extends View implements IClienteView {
         System.out.println("Selecione o modelo de conta que deseja abrir:");
         System.out.println("Digite 1 para Conta Investimento.");
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
+        int tipoConta = getInt();
 
         if (tipoConta != 1) {
             System.out.println("Opção inválida, por favor digite novamente");
