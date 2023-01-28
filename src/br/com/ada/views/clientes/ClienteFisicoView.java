@@ -22,44 +22,53 @@ public class ClienteFisicoView extends View implements IClienteView {
     }
 
     public void menuInicial(Cliente cliente) {
-        System.out.println("Bem vindo " + cliente.getNome() + "!");
+        boolean sair = false;
+        do {
+            System.out.println("Bem vindo " + cliente.getNome() + "!");
 
-        if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
-            System.out.println("Digite 1 para acessar sua Conta Corrente.");
-        }
+            if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
+                System.out.println("Digite 1 para acessar sua Conta Corrente.");
+            }
 
-        if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.POUPANCA)) {
-            System.out.println("Digite 2 para acessar sua Conta Poupança.");
-        }
+            if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.POUPANCA)) {
+                System.out.println("Digite 2 para acessar sua Conta Poupança.");
+            }
 
-        if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.INVESTIMENTO)) {
-            System.out.println("Digite 3 para acessar sua Conta Investimento.");
-        }
+            if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.INVESTIMENTO)) {
+                System.out.println("Digite 3 para acessar sua Conta Investimento.");
+            }
 
-        System.out.println("Digite 4 para criar uma conta.");
+            System.out.println("Digite 4 para criar uma conta.");
+            System.out.println("Digite 5 para retornar");
 
-        int tipoConta = Integer.parseInt(sc.nextLine());
 
-        switch (tipoConta){
-            case 1:
-                ContaCorrente cc = RepositorioContaCorrente.getInstance().retornarContaCorrente(cliente);
-                ContaCorrenteView.getInstance().menuInicial(cc);
-                break;
-            case 2:
-                ContaPoupanca cp = RepositorioContaPoupanca.getInstance().retornarContaPoupanca(cliente);
-                ContaPoupancaView.getInstance().menuInicial(cp);
-                break;
-            case 3:
-                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(cliente);
-                ContaInvestimentoView.getInstance().menuInicial(ci);
-                break;
-            case 4:
-                menuAdicionarConta(cliente);
-                break;
-            default:
-                System.out.println("Opção inválida, por favor digite novamente");
-                menuInicial(cliente);
-        }
+            int tipoConta = Integer.parseInt(sc.nextLine());
+
+            switch (tipoConta){
+                case 1:
+                    ContaCorrente cc = RepositorioContaCorrente.getInstance().retornarContaCorrente(cliente);
+                    ContaCorrenteView.getInstance().menuInicial(cc);
+                    break;
+                case 2:
+                    ContaPoupanca cp = RepositorioContaPoupanca.getInstance().retornarContaPoupanca(cliente);
+                    ContaPoupancaView.getInstance().menuInicial(cp);
+                    break;
+                case 3:
+                    ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(cliente);
+                    ContaInvestimentoView.getInstance().menuInicial(ci);
+                    break;
+                case 4:
+                    menuAdicionarConta(cliente);
+                    break;
+                case 5:
+                    sair = true;
+                    break;
+                default:
+                    System.out.println("Opção inválida, por favor digite novamente");
+                    menuInicial(cliente);
+            }
+        } while (!sair);
+
     }
 
     public void menuAdicionarConta(Cliente cliente) {
