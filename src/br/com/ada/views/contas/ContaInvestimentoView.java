@@ -34,7 +34,7 @@ public class ContaInvestimentoView extends View {
                     menuDeposito(conta);
                     break;
                 case 4:
-                    menuInvestimento(conta);
+                    menuTransferencia(conta);
                     break;
                 case 5:
                     sair = true;
@@ -61,10 +61,6 @@ public class ContaInvestimentoView extends View {
         System.out.println("Quanto deseja depositar?");
         double valorDeposito = Double.parseDouble(sc.nextLine());
         conta.depositar(valorDeposito);
-    }
-
-    public void menuInvestimento(ContaInvestimento conta) {
-        //todo - fazer!!
     }
 
     public void menuTransferencia(ContaInvestimento conta) {
