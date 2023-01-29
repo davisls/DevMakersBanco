@@ -21,6 +21,7 @@ public class ClienteFisicoView extends View implements IClienteView {
         return INSTANCE;
     }
 
+    @Override
     public void menuInicial(Cliente cliente) {
         boolean sair = false;
         do {
@@ -42,7 +43,7 @@ public class ClienteFisicoView extends View implements IClienteView {
             System.out.println("Digite 5 para retornar");
 
 
-            int tipoConta = getInt();
+            int tipoConta = pedirOpcao();
 
             switch (tipoConta){
                 case 1:
@@ -71,6 +72,7 @@ public class ClienteFisicoView extends View implements IClienteView {
 
     }
 
+    @Override
     public void menuAdicionarConta(Cliente cliente) {
         if (cliente.getContas().size() == 3) {
             System.out.println("Você já tem todas as nossas opções de conta abertas.");
@@ -87,7 +89,7 @@ public class ClienteFisicoView extends View implements IClienteView {
             System.out.println("Digite 2 para Conta Poupança.");
         }
 
-        int tipoConta = getInt();
+        int tipoConta = pedirOpcao();
 
         switch (tipoConta){
             case 1:

@@ -1,12 +1,9 @@
 package br.com.ada.views.contas;
 
-import br.com.ada.contas.Conta;
 import br.com.ada.contas.ContaInvestimento;
 import br.com.ada.contas.ContaPoupanca;
 import br.com.ada.contas.TipoConta;
 import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
-import br.com.ada.repositorio.conta.RepositorioContaPoupanca;
-import br.com.ada.views.View;
 
 public class ContaPoupancaView extends ContaView {
     private static final ContaPoupancaView INSTANCE = new ContaPoupancaView();
@@ -26,7 +23,7 @@ public class ContaPoupancaView extends ContaView {
             System.out.println("Digite 5 para realizar uma transferência.");
             System.out.println("Digite 6 ppara retornar ao menu anterior");
 
-            int tipoConta = getInt();
+            int tipoConta = pedirOpcao();
 
             switch (tipoConta){
                 case 1:
@@ -60,7 +57,7 @@ public class ContaPoupancaView extends ContaView {
 
         System.out.println("Digite 1 para investir na Conta Investimento");
 
-        int tipoConta = getInt();
+        int tipoConta = pedirOpcao();
 
         System.out.println("Quanto deseja investir?");
         double valorInvestimento = getDouble();

@@ -19,7 +19,7 @@ public class MenuInciarView extends View {
             System.out.println("Digite 1 para abrir conta.");
             System.out.println("Digite 2 para acessar sua conta.");
             System.out.println("Digite 3 para encerrar a sessão.");
-            int opcaoMenu = getInt();
+            int opcaoMenu = pedirOpcao();
             switch (opcaoMenu) {
                 case 1:
                     menuCadastroView.menuCadastro();

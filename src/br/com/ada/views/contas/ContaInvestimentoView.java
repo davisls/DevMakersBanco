@@ -21,7 +21,7 @@ public class ContaInvestimentoView extends ContaView {
             System.out.println("Digite 4 para realizar uma transferência.");
             System.out.println("Digite 5 para retornar ao menu anterior");
 
-            int tipoConta = getInt();
+            int tipoConta = pedirOpcao();
 
             switch (tipoConta){
                 case 1:

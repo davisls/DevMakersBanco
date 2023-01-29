@@ -2,6 +2,7 @@ package br.com.ada.views.banco;
 
 import br.com.ada.clientes.ClienteFisico;
 import br.com.ada.clientes.ClienteJuridico;
+import br.com.ada.excecoes.SenhaErradaException;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
 import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
 import br.com.ada.views.View;
@@ -16,7 +17,7 @@ public class MenuLoginView extends View {
         System.out.println("Digite 1 para pessoa jurídica.");
         System.out.println("Digite 2 para pessoa física.");
         System.out.println("Digite 3 para retornar ao menu inicial");
-        int tipoPessoa = getInt();
+        int tipoPessoa = pedirOpcao();
 
         switch (tipoPessoa){
             case 1:
@@ -63,13 +64,15 @@ public class MenuLoginView extends View {
         }
         ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
 
-        System.out.println("Digite sua senha:");
-        String senhaInserida = getString();
-        if (!cliente.verificaSenha(senhaInserida)) {
-            //todo - exceção para senha errada
-            System.out.println("senha inválida");
-            return;
+        String senhaInserida = pedirSenha();
+        try {
+            validarInput.validarSenha.validarSenhaDoCliente(cliente, senhaInserida);
+
+        } catch (SenhaErradaException ex){
+            System.out.println(ex.getMessage());
+            menuLoginClienteFisico();
         }
+//
         System.out.println("cliente fisico logado");
         ClienteFisicoView.getInstance().menuInicial(cliente);
     }

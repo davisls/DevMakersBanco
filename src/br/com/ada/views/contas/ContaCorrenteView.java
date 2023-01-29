@@ -25,7 +25,7 @@ public class ContaCorrenteView extends ContaView {
             System.out.println("Digite 5 para realizar uma transfêrencia.");
             System.out.println("Digite 6 para retornar ao menu anterior");
 
-            int tipoConta = getInt();
+            int tipoConta = pedirOpcao();
 
             switch (tipoConta) {
                 case 1:
@@ -71,7 +71,7 @@ public class ContaCorrenteView extends ContaView {
             menuInicial(conta);
         }
 
-        int tipoConta = getInt();
+        int tipoConta = pedirOpcao();
 
         System.out.println("Quanto deseja investir?");
         double valorInvestimento = getDouble();

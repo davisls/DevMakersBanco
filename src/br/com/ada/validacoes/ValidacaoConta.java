@@ -11,13 +11,13 @@ import java.util.List;
 
 public class ValidacaoConta {
 
-    public void ValidaSaldoSuficienteParaSaque(double saque, double saldo) {
+    public void ValidaSaldoSuficienteParaSaque(double saque, double saldo) throws SaldoInsuficienteException{
         if (saque > saldo) {
             throw new SaldoInsuficienteException("Seu saldo é insuficiente para a transação");
         }
     }
 
-    public Conta ValidaContaDestino(String numeroContaDestino) {
+    public Conta ValidaContaDestino(String numeroContaDestino) throws ContaNaoExisteException{
         Conta contaDestino = null;
         List<Cliente> clientes = RepositorioCliente.getInstance().retornarTodos();
         for (Cliente clienteCadastrado : clientes) {

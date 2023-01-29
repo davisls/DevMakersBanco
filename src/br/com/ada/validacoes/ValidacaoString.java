@@ -2,13 +2,12 @@ package br.com.ada.validacoes;
 
 public class ValidacaoString {
 
-    public boolean validarTamanho(String string, int tamanho) {
+    public boolean isTamanhoCorreto(String string, int tamanho) {
         int tamanhoString = string.length();
-        return (tamanhoString>tamanho);
+        return (tamanhoString == tamanho);
     }
 
-
-    public boolean validarVazio(String string) {
+    public boolean isVazio(String string) {
        return string.isBlank();
     }
 }
