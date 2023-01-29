@@ -1,6 +1,6 @@
 package br.com.ada.views;
 
-import br.com.ada.validacoes.ValidacaoString;
+import br.com.ada.excecoes.SenhaForaDoPadraoException;
 import br.com.ada.validacoes.ValidarInput;
 
 import java.util.Scanner;
@@ -21,22 +21,22 @@ public abstract class View {
 
         return valor;
     }
-    public int getInt () {
-        int valor = 0;
 
+    public int pedirOpcao() {
+        int valor = 0;
         try {
             valor = Integer.parseInt(getString());
-        } catch (Exception e) {
+        } catch (NumberFormatException ex) {
             System.out.println("Valor inválido, tente novamente.");
-            getInt();
+            pedirOpcao();
         }
 
         return valor;
     }
 
-    public String getString () {
+    public String getString() {
         String string = sc.nextLine();
-        if(validarInput.validarString.validarVazio(string)){
+        if(validarInput.validarString.isVazio(string)){
             return getString();
         };
         return string;
@@ -51,8 +51,26 @@ public abstract class View {
 
     public String pedirCnpj() {
         System.out.println("Digite o seu cnpj:");
-        String cnpj =  getString();
+        String cnpj = getString();
         return cnpj;
         //todo - validar cnpj
+    }
+
+    public String pedirNome() {
+        System.out.println("Digite o seu nome:");
+        String nome = getString();
+        return nome;
+    }
+
+    public String pedirSenha() {
+        System.out.println("Digite sua senha:");
+        String senha = getString();
+        try {
+            validarInput.validarSenha.validarTamanhoSenha(senha);
+        } catch(SenhaForaDoPadraoException ex) {
+            System.out.println(ex.getMessage());
+            pedirSenha();
+        }
+        return senha;
     }
 }

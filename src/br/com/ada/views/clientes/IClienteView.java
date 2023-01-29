@@ -4,4 +4,5 @@ import br.com.ada.clientes.Cliente;
 
 public interface IClienteView {
     void menuAdicionarConta(Cliente cliente);
+    void menuInicial(Cliente cliente);
 }

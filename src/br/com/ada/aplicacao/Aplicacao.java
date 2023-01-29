@@ -13,14 +13,14 @@ import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
 
 public class Aplicacao {
     public static void main(String[] args) {
-        ClienteFisico cliente = new ClienteFisico("May", "123", "456");
+        ClienteFisico cliente = new ClienteFisico("May", "1234", "456");
         RepositorioClienteFisico.getInstance().adicionar(cliente);
         ContaCorrente cc = new ContaCorrente(cliente);
         RepositorioContaCorrente.getInstance().adiconarConta(cliente, cc);
         ContaInvestimento ci = new ContaInvestimento(cliente);
         RepositorioContaInvestimento.getInstance().adiconarConta(cliente, ci);
 
-        ClienteJuridico bethania = new ClienteJuridico("Bethania", "000", "321");
+        ClienteJuridico bethania = new ClienteJuridico("Bethania", "0001", "321");
         RepositorioClienteJuridico.getInstance().adicionar(bethania);
         ContaCorrente conta = new ContaCorrente(bethania);
         RepositorioContaCorrente.getInstance().adiconarConta(bethania, conta);

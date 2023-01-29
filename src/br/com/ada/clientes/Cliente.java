@@ -26,7 +26,9 @@ public abstract class Cliente implements ICliente{
     }
 
     public boolean verificaSenha(String senhaInserida) {
+        System.out.println(this.senha.equals(senhaInserida));
         return this.senha.equals(senhaInserida);
+
     }
 
     public void adicionarConta(Conta conta) {
