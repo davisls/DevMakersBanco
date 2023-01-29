@@ -7,7 +7,7 @@ public class ContaPoupanca extends Conta implements IInvestimento {
     public ContaPoupanca(Cliente cliente) {
         super(cliente);
         super.setTipoConta(TipoConta.POUPANCA);
-        super.setRendimentoDeposito(0.01);
+        super.setRendimentoDeposito(1.01);
 
     }
 
