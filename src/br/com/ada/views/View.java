@@ -30,13 +30,12 @@ public abstract class View {
             System.out.println("Valor inválido, tente novamente.");
             pedirOpcao();
         }
-
         return valor;
     }
 
     public String getString() {
         String string = sc.nextLine();
-        if(validarInput.validarString.isVazio(string)){
+        if(validarInput.getValidarString().isVazio(string)){
             return getString();
         };
         return string;
@@ -66,7 +65,7 @@ public abstract class View {
         System.out.println("Digite sua senha:");
         String senha = getString();
         try {
-            validarInput.validarSenha.validarTamanhoSenha(senha);
+            validarInput.getValidarSenha().validarTamanhoSenha(senha);
         } catch(SenhaForaDoPadraoException ex) {
             System.out.println(ex.getMessage());
             pedirSenha();

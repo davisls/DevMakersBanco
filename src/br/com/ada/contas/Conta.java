@@ -4,6 +4,9 @@ import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.TipoCliente;
 import br.com.ada.validacoes.ValidacaoConta;
 
+import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_SAQUE_CLIENTE_FISICO;
+import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_SAQUE_CLIENTE_JURIDICO;
+
 public abstract class Conta implements IConta {
 
     private String numeroConta;
@@ -18,7 +21,7 @@ public abstract class Conta implements IConta {
         this.cliente = cliente;
         this.numeroConta = String.valueOf(((int) (Math.random() * 99999) + 10000));
         this.saldo = 0;
-        this.taxaSaque = (cliente.getTipoCliente() == TipoCliente.FISICO ? 1 : 1.005);
+        this.taxaSaque = (cliente.getTipoCliente() == TipoCliente.FISICO ? TAXA_SAQUE_CLIENTE_FISICO : TAXA_SAQUE_CLIENTE_JURIDICO);
         this.valida = new ValidacaoConta();
     }
 
