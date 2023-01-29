@@ -2,6 +2,7 @@ package br.com.ada.views.banco;
 
 import br.com.ada.clientes.ClienteFisico;
 import br.com.ada.clientes.ClienteJuridico;
+import br.com.ada.excecoes.CpfNaoCadastradoException;
 import br.com.ada.excecoes.SenhaErradaException;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
 import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
@@ -58,9 +59,7 @@ public class MenuLoginView extends View {
     private void menuLoginClienteFisico() {
         String cpf = pedirCpf();
         if (!validarInput.getValidarCpf().isCpfCadastrado(cpf)) {
-            //todo - exceção cpf não cadastrado
-            System.out.println("esse cpf não esta cadastrado!");
-            return;
+            throw new CpfNaoCadastradoException("Cpf não cadastrado!");
         }
         ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
 

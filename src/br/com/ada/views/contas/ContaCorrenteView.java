@@ -11,9 +11,6 @@ public class ContaCorrenteView extends ContaView {
         return INSTANCE;
     }
 
-
-    //todo - esse menu tem que retornar para o menu das opções de conta (já logado),
-    // isso vale para os outros menus iniciais dos outros tipos de conta
     public void menuInicial(ContaCorrente conta) {
         boolean sair = false;
         do {

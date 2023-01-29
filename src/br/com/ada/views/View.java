@@ -1,6 +1,7 @@
 package br.com.ada.views;
 
 import br.com.ada.excecoes.SenhaForaDoPadraoException;
+import br.com.ada.validacoes.ValidacaoConta;
 import br.com.ada.validacoes.ValidarInput;
 
 import java.util.Scanner;
@@ -8,6 +9,8 @@ import java.util.Scanner;
 public abstract class View {
     public Scanner sc = new Scanner(System.in);
     public ValidarInput validarInput = new ValidarInput();
+
+    public ValidacaoConta validacaoConta = new ValidacaoConta();
 
     public double getDouble () {
         double valor = 0;

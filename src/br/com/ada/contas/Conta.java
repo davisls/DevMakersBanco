@@ -2,6 +2,7 @@ package br.com.ada.contas;
 
 import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.TipoCliente;
+import br.com.ada.excecoes.SaldoInsuficienteException;
 import br.com.ada.validacoes.ValidacaoConta;
 
 import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_SAQUE_CLIENTE_FISICO;
@@ -74,21 +75,14 @@ public abstract class Conta implements IConta {
     }
 
     @Override
-    public void sacar(double valor) {
+    public void sacar(double valor) throws SaldoInsuficienteException {
         double saqueComTaxa = valor * this.getTaxaSaque();
         valida.ValidaSaldoSuficienteParaSaque(saqueComTaxa, this.saldo);
-//        try {
-        //todo- colocar try catch na view
-//        } catch (SaldoInsuficienteException ex) {
-//            System.out.println(ex.getMessage());
-//        }
-
         this.setSaldo(this.getSaldo() - saqueComTaxa);
     }
 
     @Override
     public void transferir(double valor, String numeroContaDestino) {
-        //todo - tratar exceção na view
         Conta contaDestino = valida.ValidaContaDestino(numeroContaDestino);
         this.sacar(valor);
         contaDestino.depositar(valor);
