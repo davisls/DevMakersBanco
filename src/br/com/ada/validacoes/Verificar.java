@@ -1,4 +1,4 @@
-package br.com.ada.utils;
+package br.com.ada.validacoes;
 
 public class Verificar {
     public void existeSaldo(double saque, double saldo) {
