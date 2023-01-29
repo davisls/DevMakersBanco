@@ -42,10 +42,14 @@ public abstract class View {
     }
 
     public String pedirCpf() {
-        System.out.println("Digite o seu cpf:");
-        String cpf =  getString();
+        boolean isValid = false;
+        String cpf;
+        do {
+            System.out.println("Digite o seu cpf:");
+            cpf =  getString();
+            isValid = validarInput.getValidarCpf().validarFormatoInput(cpf);
+        } while (!isValid);
         return cpf;
-        //todo - validar cpf
     }
 
     public String pedirCnpj() {
@@ -68,7 +72,7 @@ public abstract class View {
             validarInput.getValidarSenha().validarTamanhoSenha(senha);
         } catch(SenhaForaDoPadraoException ex) {
             System.out.println(ex.getMessage());
-            pedirSenha();
+            return pedirSenha();
         }
         return senha;
     }
