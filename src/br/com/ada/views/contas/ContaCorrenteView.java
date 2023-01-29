@@ -1,17 +1,10 @@
 package br.com.ada.views.contas;
 
 import br.com.ada.contas.*;
-import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
-import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
-import br.com.ada.repositorio.conta.RepositorioConta;
-import br.com.ada.repositorio.conta.RepositorioContaCorrente;
 import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
 import br.com.ada.repositorio.conta.RepositorioContaPoupanca;
-import br.com.ada.views.View;
-import br.com.ada.views.banco.BancoView;
-import br.com.ada.views.clientes.ClienteFisicoView;
 
-public class ContaCorrenteView extends View {
+public class ContaCorrenteView extends ContaView {
     private static final ContaCorrenteView INSTANCE = new ContaCorrenteView();
 
     public static ContaCorrenteView getInstance() {
@@ -59,27 +52,6 @@ public class ContaCorrenteView extends View {
         } while (!sair);
     }
 
-    public void menuSaque(ContaCorrente conta) {
-        menuSaldo(conta);
-        System.out.println("Quanto deseja sacar?");
-        double valorSaque = getDouble();
-        conta.sacar(valorSaque);
-        System.out.println();
-
-    }
-
-    public void menuSaldo(ContaCorrente conta) {
-        System.out.println("Seu saldo é " + conta.getSaldo() + ".");
-        System.out.println();
-    }
-
-    public void menuDeposito(ContaCorrente conta) {
-        System.out.println("Quanto deseja depositar?");
-        double valorDeposito = getDouble();
-        conta.depositar(valorDeposito);
-        System.out.println();
-    }
-
     public void  menuInvestimento(ContaCorrente conta) {
         boolean temContaParaInvestir = false;
 
@@ -120,13 +92,4 @@ public class ContaCorrenteView extends View {
         System.out.println();
     }
 
-    public void menuTransferencia(ContaCorrente conta) {
-        //todo implementar metodo
-        System.out.println("Digite o valor que vai ser transferido:");
-        double valorParaTransferencia = getDouble();
-        System.out.println("Digite o número da conta para qual você quer transferir o dinheiro:");
-        String numeroContaDestino = getString();
-
-        conta.transferir(valorParaTransferencia,numeroContaDestino);
-    }
 }

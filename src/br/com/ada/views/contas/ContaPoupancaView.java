@@ -8,7 +8,7 @@ import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
 import br.com.ada.repositorio.conta.RepositorioContaPoupanca;
 import br.com.ada.views.View;
 
-public class ContaPoupancaView extends View {
+public class ContaPoupancaView extends ContaView {
     private static final ContaPoupancaView INSTANCE = new ContaPoupancaView();
 
     public static ContaPoupancaView getInstance() {
@@ -52,23 +52,6 @@ public class ContaPoupancaView extends View {
 
     }
 
-    public void menuSaque(ContaPoupanca conta) {
-        menuSaldo(conta);
-        System.out.println("Quanto deseja sacar?");
-        double valorSaque = getDouble();
-        conta.sacar(valorSaque);
-    }
-
-    public void menuSaldo(ContaPoupanca conta) {
-        System.out.println("Seu saldo é " + conta.getSaldo() + ".");
-    }
-
-    public void menuDeposito(ContaPoupanca conta) {
-        System.out.println("Quanto deseja depositar?");
-        double valorDeposito = getDouble();
-        conta.depositar(valorDeposito);
-    }
-
     public void menuInvestimento(ContaPoupanca conta) {
         if (conta.getCliente().getContas().stream().noneMatch(contaCliente -> contaCliente.getTipoConta() == TipoConta.INVESTIMENTO)) {
             System.out.println("No momento essa é sua melhor conta disponível em termos de rentabilidade.");
@@ -93,7 +76,4 @@ public class ContaPoupancaView extends View {
         }
     }
 
-    public void menuTransferencia(Conta conta) {
-
-    }
 }
