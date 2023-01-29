@@ -2,10 +2,7 @@ package br.com.ada.contas;
 
 import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.TipoCliente;
-import br.com.ada.repositorio.cliente.RepositorioCliente;
-import br.com.ada.repositorio.conta.RepositorioConta;
-
-import java.util.List;
+import br.com.ada.validacoes.ValidacaoConta;
 
 public abstract class Conta implements IConta {
 
@@ -14,14 +11,15 @@ public abstract class Conta implements IConta {
     private double saldo;
     private double taxaSaque;
     private double rendimentoDeposito;
-
     private TipoConta tipoConta;
+    private ValidacaoConta valida;
 
     public Conta(Cliente cliente) {
         this.cliente = cliente;
         this.numeroConta = String.valueOf(((int) (Math.random() * 99999) + 10000));
         this.saldo = 0;
-        this.taxaSaque = (cliente.getTipoCliente() == TipoCliente.FISICO ? 0 : 0.005);
+        this.taxaSaque = (cliente.getTipoCliente() == TipoCliente.FISICO ? 1 : 1.005);
+        this.valida = new ValidacaoConta();
     }
 
     public String getNumeroConta() {
@@ -69,38 +67,28 @@ public abstract class Conta implements IConta {
     }
 
     public void depositar(double valor) {
-        this.setSaldo(this.getSaldo() + valor + valor * this.getRendimentoDeposito());
+        this.setSaldo(this.getSaldo() + valor * this.getRendimentoDeposito());
     }
 
     @Override
     public void sacar(double valor) {
-        double saqueComTaxa = valor + (valor * this.getTaxaSaque());
-        //todo - separar em um outro método essa validação de saldo suficiente
-        if (saqueComTaxa > getSaldo()) {
-            System.out.println("saldo indisponível");
-            return;
-            //todo - fazer exceção
-        }
+        double saqueComTaxa = valor * this.getTaxaSaque();
+        valida.ValidaSaldoSuficienteParaSaque(saqueComTaxa, this.saldo);
+//        try {
+        //todo- colocar try catch na view
+//        } catch (SaldoInsuficienteException ex) {
+//            System.out.println(ex.getMessage());
+//        }
 
         this.setSaldo(this.getSaldo() - saqueComTaxa);
     }
 
     @Override
     public void transferir(double valor, String numeroContaDestino) {
-
-        Conta contaDestino = null;
-        List<Cliente> clientes = RepositorioCliente.getInstance().retornarTodos();
-        for (Cliente clienteCadastrado : clientes) {
-            Conta conta = RepositorioConta.getInstance().retornarContaPorNumero(clienteCadastrado, numeroContaDestino);
-            if (conta != null) {
-                contaDestino = conta;
-                this.sacar(valor);
-                contaDestino.depositar(valor);
-            }
-        }
-
-        if (contaDestino == null) System.out.println("Essa conta não existe");
-
+        //todo - tratar exceção na view
+        Conta contaDestino = valida.ValidaContaDestino(numeroContaDestino);
+        this.sacar(valor);
+        contaDestino.depositar(valor);
     }
 
 }

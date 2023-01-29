@@ -11,7 +11,7 @@ public class ContaCorrente extends Conta implements IInvestimento {
     public ContaCorrente(Cliente cliente) {
         super(cliente);
         super.setTipoConta(TipoConta.CORRENTE);
-        super.setRendimentoDeposito(0);
+        super.setRendimentoDeposito(1);
     }
 
     @Override
