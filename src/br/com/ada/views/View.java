@@ -53,10 +53,15 @@ public abstract class View {
     }
 
     public String pedirCnpj() {
-        System.out.println("Digite o seu cnpj:");
-        String cnpj = getString();
+        boolean isValid = false;
+        String cnpj;
+        do {
+            System.out.println("Digite o seu cnpj:");
+            cnpj = getString();
+            isValid = validarInput.getValidarCnpj().validarFormatoInput(cnpj);
+
+        } while (isValid);
         return cnpj;
-        //todo - validar cnpj
     }
 
     public String pedirNome() {
