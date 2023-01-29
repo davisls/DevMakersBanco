@@ -1,18 +1,21 @@
 package br.com.ada.contas;
 
-public class ContaCorrente extends Conta implements IConta {
-    @Override
-    public void depositar() {
+import br.com.ada.clientes.Cliente;
+import br.com.ada.clientes.ClienteJuridico;
+import br.com.ada.clientes.TipoCliente;
 
+import java.util.List;
+
+public class ContaCorrente extends Conta implements IInvestimento {
+
+    public ContaCorrente(Cliente cliente) {
+        super(cliente);
+        super.setTipoConta(TipoConta.CORRENTE);
+        super.setRendimentoDeposito(1);
     }
 
     @Override
-    public void sacar() {
-
-    }
-
-    @Override
-    public void investir() {
-
+    public void investir(double valor, Conta contaDestino) {
+         transferir(valor, contaDestino.getNumeroConta());
     }
 }

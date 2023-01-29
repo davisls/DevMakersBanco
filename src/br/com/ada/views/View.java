@@ -1,0 +1,76 @@
+package br.com.ada.views;
+
+import br.com.ada.excecoes.SenhaForaDoPadraoException;
+import br.com.ada.validacoes.ValidarInput;
+
+import java.util.Scanner;
+
+public abstract class View {
+    public Scanner sc = new Scanner(System.in);
+    public ValidarInput validarInput = new ValidarInput();
+
+    public double getDouble () {
+        double valor = 0;
+
+        try {
+            valor = Double.parseDouble(getString());
+        } catch (Exception e) {
+            System.out.println("Valor inválido, tente novamente.");
+            getDouble();
+        }
+
+        return valor;
+    }
+
+    public int pedirOpcao() {
+        int valor = 0;
+        try {
+            valor = Integer.parseInt(getString());
+        } catch (NumberFormatException ex) {
+            System.out.println("Valor inválido, tente novamente.");
+            pedirOpcao();
+        }
+
+        return valor;
+    }
+
+    public String getString() {
+        String string = sc.nextLine();
+        if(validarInput.validarString.isVazio(string)){
+            return getString();
+        };
+        return string;
+    }
+
+    public String pedirCpf() {
+        System.out.println("Digite o seu cpf:");
+        String cpf =  getString();
+        return cpf;
+        //todo - validar cpf
+    }
+
+    public String pedirCnpj() {
+        System.out.println("Digite o seu cnpj:");
+        String cnpj = getString();
+        return cnpj;
+        //todo - validar cnpj
+    }
+
+    public String pedirNome() {
+        System.out.println("Digite o seu nome:");
+        String nome = getString();
+        return nome;
+    }
+
+    public String pedirSenha() {
+        System.out.println("Digite sua senha:");
+        String senha = getString();
+        try {
+            validarInput.validarSenha.validarTamanhoSenha(senha);
+        } catch(SenhaForaDoPadraoException ex) {
+            System.out.println(ex.getMessage());
+            pedirSenha();
+        }
+        return senha;
+    }
+}

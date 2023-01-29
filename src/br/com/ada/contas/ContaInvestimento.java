@@ -1,18 +1,13 @@
 package br.com.ada.contas;
 
-public class ContaInvestimento extends Conta implements IConta {
-    @Override
-    public void depositar() {
+import br.com.ada.clientes.Cliente;
+import br.com.ada.clientes.TipoCliente;
 
+public class ContaInvestimento extends Conta {
+    public ContaInvestimento(Cliente cliente) {
+        super(cliente);
+        super.setTipoConta(TipoConta.INVESTIMENTO);
+        super.setRendimentoDeposito(cliente.getTipoCliente() == TipoCliente.FISICO ? 1.015 : 1.035);
     }
 
-    @Override
-    public void sacar() {
-
-    }
-
-    @Override
-    public void investir() {
-
-    }
 }

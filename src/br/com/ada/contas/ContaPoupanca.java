@@ -1,18 +1,19 @@
 package br.com.ada.contas;
 
-public class ContaPoupanca extends Conta implements IConta {
-    @Override
-    public void depositar() {
+import br.com.ada.clientes.Cliente;
+import br.com.ada.clientes.TipoCliente;
+
+public class ContaPoupanca extends Conta implements IInvestimento {
+    public ContaPoupanca(Cliente cliente) {
+        super(cliente);
+        super.setTipoConta(TipoConta.POUPANCA);
+        super.setRendimentoDeposito(1.01);
 
     }
 
     @Override
-    public void sacar() {
-
+    public void investir(double valor, Conta contaDestino) {
+         transferir(valor, contaDestino.getNumeroConta());
     }
 
-    @Override
-    public void investir() {
-
-    }
 }
