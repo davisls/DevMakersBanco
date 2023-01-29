@@ -1,10 +1,10 @@
 package br.com.ada.views.contas;
 
-import br.com.ada.contas.Conta;
-import br.com.ada.contas.ContaInvestimento;
-import br.com.ada.views.View;
 
-public class ContaInvestimentoView extends View {
+import br.com.ada.contas.ContaInvestimento;
+
+
+public class ContaInvestimentoView extends ContaView {
     private static final ContaInvestimentoView INSTANCE = new ContaInvestimentoView();
 
     public static ContaInvestimentoView getInstance() {
@@ -46,24 +46,4 @@ public class ContaInvestimentoView extends View {
         } while (!sair);
     }
 
-    public void menuSaque(ContaInvestimento conta) {
-        menuSaldo(conta);
-        System.out.println("Quanto deseja sacar?");
-        double valorSaque = getDouble();
-        conta.sacar(valorSaque);
-    }
-
-    public void menuSaldo(ContaInvestimento conta) {
-        System.out.println("Seu saldo é " + conta.getSaldo() + ".");
-    }
-
-    public void menuDeposito(ContaInvestimento conta) {
-        System.out.println("Quanto deseja depositar?");
-        double valorDeposito = getDouble();
-        conta.depositar(valorDeposito);
-    }
-
-    public void menuTransferencia(ContaInvestimento conta) {
-        //todo - fazer!!
-    }
 }

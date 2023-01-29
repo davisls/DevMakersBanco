@@ -12,7 +12,7 @@ import java.util.List;
 public class ValidacaoConta {
 
     public void ValidaSaldoSuficienteParaSaque(double saque, double saldo) {
-        if (saque < saldo) {
+        if (saque > saldo) {
             throw new SaldoInsuficienteException("Seu saldo é insuficiente para a transação");
         }
     }
