@@ -28,7 +28,7 @@ public class Banco {
     }
 
     public void iniciar() {
-        BancoView.getInstance().menuInicial();
+        BancoView.getInstance().inicialBancoView();
     }
 
     public void adicionarClienteNaLista(Cliente cliente){
