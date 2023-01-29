@@ -37,7 +37,7 @@ public class MenuLoginView extends View {
 
     private void menuLoginClienteJuridico() {
         String cnpj = pedirCnpj();
-        if (!validarInput.validarCnpj.isCnpjCadastrado(cnpj)) {
+        if (!validarInput.getValidarCnpj().isCnpjCadastrado(cnpj)) {
             //todo - exceção cnpj não cadastrado
             System.out.println("esse cnpj não esta cadastrado!");
             return;
@@ -57,7 +57,7 @@ public class MenuLoginView extends View {
 
     private void menuLoginClienteFisico() {
         String cpf = pedirCpf();
-        if (!validarInput.validarCpf.isCpfCadastrado(cpf)) {
+        if (!validarInput.getValidarCpf().isCpfCadastrado(cpf)) {
             //todo - exceção cpf não cadastrado
             System.out.println("esse cpf não esta cadastrado!");
             return;
@@ -66,7 +66,7 @@ public class MenuLoginView extends View {
 
         String senhaInserida = pedirSenha();
         try {
-            validarInput.validarSenha.validarSenhaDoCliente(cliente, senhaInserida);
+            validarInput.getValidarSenha().validarSenhaDoCliente(cliente, senhaInserida);
 
         } catch (SenhaErradaException ex){
             System.out.println(ex.getMessage());

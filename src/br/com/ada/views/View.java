@@ -30,23 +30,26 @@ public abstract class View {
             System.out.println("Valor inválido, tente novamente.");
             pedirOpcao();
         }
-
         return valor;
     }
 
     public String getString() {
         String string = sc.nextLine();
-        if(validarInput.validarString.isVazio(string)){
+        if(validarInput.getValidarString().isVazio(string)){
             return getString();
         };
         return string;
     }
 
     public String pedirCpf() {
-        System.out.println("Digite o seu cpf:");
-        String cpf =  getString();
+        boolean isValid = false;
+        String cpf;
+        do {
+            System.out.println("Digite o seu cpf:");
+            cpf =  getString();
+            isValid = validarInput.getValidarCpf().validarFormatoInput(cpf);
+        } while (!isValid);
         return cpf;
-        //todo - validar cpf
     }
 
     public String pedirCnpj() {
@@ -66,10 +69,10 @@ public abstract class View {
         System.out.println("Digite sua senha:");
         String senha = getString();
         try {
-            validarInput.validarSenha.validarTamanhoSenha(senha);
+            validarInput.getValidarSenha().validarTamanhoSenha(senha);
         } catch(SenhaForaDoPadraoException ex) {
             System.out.println(ex.getMessage());
-            pedirSenha();
+            return pedirSenha();
         }
         return senha;
     }
