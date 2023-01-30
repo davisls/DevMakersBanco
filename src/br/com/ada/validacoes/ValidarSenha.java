@@ -17,7 +17,6 @@ public class ValidarSenha extends ValidacaoString{
     public void validarSenhaDoCliente(Cliente cliente, String senha) throws SenhaErradaException {
         if (!cliente.verificaSenha(senha)) {
             throw new SenhaErradaException("A senha digitada não corresponde a senha cadastrada.");
-
         }
     }
 }

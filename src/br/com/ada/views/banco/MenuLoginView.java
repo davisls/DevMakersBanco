@@ -20,6 +20,7 @@ public class MenuLoginView extends View {
         System.out.println("Digite 1 para pessoa jurídica.");
         System.out.println("Digite 2 para pessoa física.");
         System.out.println("Digite 3 para retornar ao menu inicial");
+
         int tipoPessoa = pedirOpcao();
 
         switch (tipoPessoa){
@@ -43,7 +44,6 @@ public class MenuLoginView extends View {
             validarInput.getValidarCnpj().isCnpjCadastrado(cnpj);
             ClienteJuridico cliente = RepositorioClienteJuridico.getInstance().retornarClientePorCnpj(cnpj);
             validarSenhaCliente(cliente);
-            System.out.println("cliente jurídico logado");
             ClienteJuridicoView.getInstance().menuInicial(cliente);
         } catch (DocumentoFormatoInvalidoException | DocumentoNaoCadastradoException e){
             System.out.println(e.getMessage());
@@ -57,7 +57,6 @@ public class MenuLoginView extends View {
             validarInput.getValidarCpf().isCpfCadastrado(cpf);
             ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
             validarSenhaCliente(cliente);
-            System.out.println("cliente fisico logado");
             ClienteFisicoView.getInstance().menuInicial(cliente);
         } catch (DocumentoFormatoInvalidoException | DocumentoNaoCadastradoException e){
             System.out.println(e.getMessage());

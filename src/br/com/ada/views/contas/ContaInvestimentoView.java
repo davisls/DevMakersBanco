@@ -14,8 +14,10 @@ public class ContaInvestimentoView extends ContaView {
     public void menuInicial(ContaInvestimento conta) {
         boolean sair = false;
         do {
-            System.out.println("Você está na sua conta investimento, o que deseja fazer?");
-            System.out.println("Digite 1 para consultar o saldo.");
+            System.out.println("\nVocê está na sua conta investimento.");
+            System.out.println("O número dessa conta é: " + conta.getNumeroConta());
+            System.out.println("O que deseja fazer?");
+            System.out.println("\nDigite 1 para consultar o saldo.");
             System.out.println("Digite 2 para realizar um saque.");
             System.out.println("Digite 3 para realizar um depósito.");
             System.out.println("Digite 4 para realizar uma transferência.");

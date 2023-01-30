@@ -25,10 +25,6 @@ public class Aplicacao {
         ContaCorrente conta = new ContaCorrente(bethania);
         RepositorioContaCorrente.getInstance().adiconarConta(bethania, conta);
 
-        System.out.println(cc.getCliente().getNome() + " - número da conta corrente: " + cc.getNumeroConta());
-        System.out.println(ci.getCliente().getNome() + " - número da conta investimento: " + ci.getNumeroConta());
-        System.out.println(conta.getCliente().getNome() + " - número da conta corrente: " +conta.getNumeroConta());
-
         Banco.getInstance().iniciar();
     }
 }
