@@ -14,7 +14,10 @@ public class MenuInciarView extends View {
     public void menuInicial() {
         boolean sair = false;
         do {
-            System.out.println("\nBem vindo ao Banco");
+            System.out.println();
+            System.out.println("~~~~<💰>~~~~ 🏟 ADAÚ 🏟 ~~~~<💰>~~~~");
+            System.out.println("     Feito por você, para você! ");
+            System.out.println();
             System.out.println("Digite 1 para abrir conta.");
             System.out.println("Digite 2 para acessar sua conta.");
             System.out.println("Digite 3 para encerrar a sessão.");

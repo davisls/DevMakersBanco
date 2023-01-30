@@ -23,7 +23,7 @@ public class ClienteFisicoView extends View implements IClienteView {
 
     @Override
     public void menuInicial(Cliente cliente) {
-            System.out.println("\nBem vindo " + cliente.getNome() + "!");
+            System.out.println("\n ~~~~~< Bem vindo " + cliente.getNome() + "! >~~~~~");
 
             if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
                 System.out.println("Digite 1 para acessar sua Conta Corrente.");
@@ -70,7 +70,7 @@ public class ClienteFisicoView extends View implements IClienteView {
     @Override
     public void menuAdicionarConta(Cliente cliente) {
         if (cliente.getContas().size() == 3) {
-            System.out.println("Você já tem todas as nossas opções de conta abertas.");
+            System.out.println("😱 Você já tem todas as nossas opções de conta abertas. ");
             menuInicial(cliente);
         }
 
@@ -89,11 +89,11 @@ public class ClienteFisicoView extends View implements IClienteView {
         switch (tipoConta){
             case 1:
                 Banco.getInstance().criaContaInvestimento(cliente);
-                System.out.println("Conta investimento criada com sucesso!");
+                System.out.println("💲 Conta investimento criada com sucesso!");
                 break;
             case 2:
                 Banco.getInstance().criaContaPoupanca(cliente);
-                System.out.println("Conta poupança criada com sucesso!");
+                System.out.println("💲 Conta poupança criada com sucesso!");
                 break;
             default:
                 System.out.println("Opção inválida, por favor digite novamente");

@@ -8,7 +8,7 @@ import br.com.ada.views.View;
 
 public class MenuCadastroView extends View {
     public void menuCadastro() {
-        System.out.println("\nCadastro");
+        System.out.println("\n~~~~< ⌨ CADASTRO >~~~~");
         String nome = pedirNome();
         String senha = pedirSenha();
 

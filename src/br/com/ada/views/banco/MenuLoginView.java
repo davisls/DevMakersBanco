@@ -15,7 +15,7 @@ import br.com.ada.views.clientes.ClienteJuridicoView;
 public class MenuLoginView extends View {
     public void menuLogin() {
         System.out.println("");
-        System.out.println("Login");
+        System.out.println("~~~~< ▶ LOGIN >~~~~");
         System.out.println("Selecione se você é pessoa jurídica ou física:");
         System.out.println("Digite 1 para pessoa jurídica.");
         System.out.println("Digite 2 para pessoa física.");

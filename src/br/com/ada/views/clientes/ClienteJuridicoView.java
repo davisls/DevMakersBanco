@@ -59,7 +59,7 @@ public class ClienteJuridicoView extends View implements IClienteView {
     @Override
     public void menuAdicionarConta(Cliente cliente) {
         if (cliente.getContas().size() == 2) {
-            System.out.println("Você já tem todas as nossas opções de conta abertas.");
+            System.out.println("😱 Você já tem todas as nossas opções de conta abertas.");
             menuInicial(cliente);
         }
 
@@ -74,6 +74,7 @@ public class ClienteJuridicoView extends View implements IClienteView {
         }
 
         Banco.getInstance().criaContaInvestimento(cliente);
+        System.out.println("💲 Conta investimento criada com sucesso!");
         menuInicial(cliente);
     }
 }

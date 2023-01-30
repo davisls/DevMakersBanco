@@ -17,7 +17,7 @@ public class ContaPoupancaView extends ContaView {
     public void menuInicial(ContaPoupanca conta) {
         boolean sair = false;
         do {
-            System.out.println("\nVocê está na sua conta POUPANÇA.");
+            System.out.println("\n💰 Você está na sua conta POUPANÇA.");
             System.out.println("O número dessa conta é: " + conta.getNumeroConta());
             System.out.println("O que deseja fazer?");
             System.out.println("\nDigite 1 para consultar o saldo.");
@@ -82,7 +82,5 @@ public class ContaPoupancaView extends ContaView {
         } catch (ValorNegativoException | SaldoInsuficienteException e){
             System.out.println(e.getMessage());
         }
-
     }
-
 }

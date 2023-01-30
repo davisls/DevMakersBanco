@@ -21,7 +21,7 @@ public class ContaView extends View {
     }
 
     public void menuSaldo(Conta conta) {
-        System.out.println("\nSeu saldo é " + String.format("%.2f",conta.getSaldo())  + ".");
+        System.out.println("\nSeu saldo é R$ " + String.format("%.2f",conta.getSaldo())  + ".");
     }
 
     public void menuDeposito(Conta conta) {

@@ -12,9 +12,7 @@ public class ContaInvestimentoView extends ContaView {
     }
 
     public void menuInicial(ContaInvestimento conta) {
-        boolean sair = false;
-        do {
-            System.out.println("\nVocê está na sua conta INVESTIMENTO.");
+            System.out.println("\n💵 Você está na sua conta INVESTIMENTO.");
             System.out.println("O número dessa conta é: " + conta.getNumeroConta());
             System.out.println("O que deseja fazer?");
             System.out.println("\nDigite 1 para consultar o saldo.");
@@ -39,13 +37,10 @@ public class ContaInvestimentoView extends ContaView {
                     menuTransferencia(conta);
                     break;
                 case 5:
-                    sair = true;
-                    //todo - metodo retornar não esta funcionando.
-                    break;
+                    return;
                 default:
                     System.out.println("Opção inválida, por favor digite novamente");
                     menuInicial(conta);
             }
-        } while (!sair);
-    }
+        }
 }
