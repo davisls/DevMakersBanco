@@ -16,7 +16,7 @@ public class ContaCorrenteView extends ContaView {
     public void menuInicial(ContaCorrente conta) {
         boolean sair = false;
         do {
-            System.out.println("\nVocê está na sua conta corrente.");
+            System.out.println("\nVocê está na sua conta CORRENTE.");
             System.out.println("O número dessa conta é: " + conta.getNumeroConta());
             System.out.println("O que deseja fazer?");
             System.out.println("\nDigite 1 para consultar o saldo.");

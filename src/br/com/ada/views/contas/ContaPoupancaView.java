@@ -17,7 +17,7 @@ public class ContaPoupancaView extends ContaView {
     public void menuInicial(ContaPoupanca conta) {
         boolean sair = false;
         do {
-            System.out.println("\nVocê está na sua conta poupança.");
+            System.out.println("\nVocê está na sua conta POUPANÇA.");
             System.out.println("O número dessa conta é: " + conta.getNumeroConta());
             System.out.println("O que deseja fazer?");
             System.out.println("\nDigite 1 para consultar o saldo.");
@@ -25,7 +25,7 @@ public class ContaPoupancaView extends ContaView {
             System.out.println("Digite 3 para realizar um depósito.");
             System.out.println("Digite 4 para realizar um investimento.");
             System.out.println("Digite 5 para realizar uma transferência.");
-            System.out.println("Digite 6 ppara retornar ao menu anterior");
+            System.out.println("Digite 6 para retornar ao menu anterior");
 
             int tipoConta = pedirOpcao();
 
@@ -44,6 +44,9 @@ public class ContaPoupancaView extends ContaView {
                     break;
                 case 5:
                     menuTransferencia(conta);
+                    break;
+                case 6:
+                    sair = true;
                     break;
                 default:
                     System.out.println("Opção inválida, por favor digite novamente");

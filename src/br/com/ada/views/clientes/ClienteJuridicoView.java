@@ -20,36 +20,40 @@ public class ClienteJuridicoView extends View implements IClienteView {
 
     @Override
     public void menuInicial(Cliente cliente) {
-        System.out.println("\nBem vindo " + cliente.getNome() + "!");
 
-        if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
-            System.out.println("Digite 1 para acessar sua Conta Corrente.");
-        }
+            System.out.println("\nBem vindo " + cliente.getNome() + "!");
 
-        if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.INVESTIMENTO)) {
-            System.out.println("Digite 2 para acessar sua Conta Investimento.");
-        }
+            if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
+                System.out.println("Digite 1 para acessar sua Conta Corrente.");
+            }
 
-        System.out.println("Digite 3 para criar uma conta.");
+            if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.INVESTIMENTO)) {
+                System.out.println("Digite 2 para acessar sua Conta Investimento.");
+            }
 
-        int tipoConta = pedirOpcao();
+            System.out.println("Digite 3 para criar uma conta.");
+            System.out.println("Digite 4 para retornar");
 
-        switch (tipoConta){
-            case 1:
-                ContaCorrente cc = RepositorioContaCorrente.getInstance().retornarContaCorrente(cliente);
-                ContaCorrenteView.getInstance().menuInicial(cc);
-                break;
-            case 2:
-                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(cliente);
-                ContaInvestimentoView.getInstance().menuInicial(ci);
-                break;
-            case 3:
-                menuAdicionarConta(cliente);
-                break;
-            default:
-                System.out.println("Opção inválida, por favor digite novamente");
-                menuInicial(cliente);
-        }
+            int tipoConta = pedirOpcao();
+
+            switch (tipoConta){
+                case 1:
+                    ContaCorrente cc = RepositorioContaCorrente.getInstance().retornarContaCorrente(cliente);
+                    ContaCorrenteView.getInstance().menuInicial(cc);
+                    break;
+                case 2:
+                    ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(cliente);
+                    ContaInvestimentoView.getInstance().menuInicial(ci);
+                    break;
+                case 3:
+                    menuAdicionarConta(cliente);
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Opção inválida, por favor digite novamente");
+                    menuInicial(cliente);
+            }
     }
 
     @Override

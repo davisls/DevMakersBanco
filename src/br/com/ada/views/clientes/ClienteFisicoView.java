@@ -23,8 +23,6 @@ public class ClienteFisicoView extends View implements IClienteView {
 
     @Override
     public void menuInicial(Cliente cliente) {
-        boolean sair = false;
-        do {
             System.out.println("\nBem vindo " + cliente.getNome() + "!");
 
             if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
@@ -41,7 +39,6 @@ public class ClienteFisicoView extends View implements IClienteView {
 
             System.out.println("Digite 4 para criar uma conta.");
             System.out.println("Digite 5 para retornar");
-
 
             int tipoConta = pedirOpcao();
 
@@ -62,16 +59,13 @@ public class ClienteFisicoView extends View implements IClienteView {
                     menuAdicionarConta(cliente);
                     break;
                 case 5:
-                    sair = true;
-                    //todo - verificar o porque o metodo repete 2 vezes antes de sair;
-                    break;
+                    return;
                 default:
                     System.out.println("Opção inválida, por favor digite novamente");
                     menuInicial(cliente);
             }
-        } while (!sair);
-
     }
+
 
     @Override
     public void menuAdicionarConta(Cliente cliente) {
@@ -105,7 +99,6 @@ public class ClienteFisicoView extends View implements IClienteView {
                 System.out.println("Opção inválida, por favor digite novamente");
                 menuAdicionarConta(cliente);
         }
-
         menuInicial(cliente);
     }
 }
