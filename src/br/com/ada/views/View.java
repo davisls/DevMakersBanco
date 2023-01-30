@@ -1,6 +1,6 @@
 package br.com.ada.views;
 
-import br.com.ada.excecoes.CpfFormatoInvalidoException;
+import br.com.ada.excecoes.DocumentoFormatoInvalidoException;
 import br.com.ada.excecoes.SenhaForaDoPadraoException;
 import br.com.ada.validacoes.ValidacaoConta;
 import br.com.ada.validacoes.ValidarInput;
@@ -45,23 +45,19 @@ public abstract class View {
         return string;
     }
 
-    public String pedirCpf() throws CpfFormatoInvalidoException{
+    public String pedirCpf() throws DocumentoFormatoInvalidoException {
         String cpf;
         System.out.println("Digite o seu cpf:");
         cpf =  getString();
-        validarInput.getValidarCpf().validarFormatoInput(cpf);
+        validarInput.getValidarCpf().validarFormatoInputCpf(cpf);
         return cpf;
     }
 
     public String pedirCnpj() {
-        boolean isValid = false;
         String cnpj;
-        do {
-            System.out.println("Digite o seu cnpj:");
-            cnpj = getString();
-            isValid = validarInput.getValidarCnpj().validarFormatoInput(cnpj);
-
-        } while (isValid);
+        System.out.println("Digite o seu cnpj:");
+        cnpj = getString();
+        validarInput.getValidarCnpj().validarFormatoInputCnpj(cnpj);
         return cnpj;
     }
 

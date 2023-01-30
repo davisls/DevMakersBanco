@@ -3,7 +3,7 @@ package br.com.ada.views.banco;
 import br.com.ada.banco.Banco;
 import br.com.ada.clientes.ClienteFisico;
 import br.com.ada.clientes.ClienteJuridico;
-import br.com.ada.excecoes.CpfFormatoInvalidoException;
+import br.com.ada.excecoes.DocumentoFormatoInvalidoException;
 import br.com.ada.views.View;
 
 public class MenuCadastroView extends View {
@@ -35,7 +35,7 @@ public class MenuCadastroView extends View {
                     System.out.println("Opção inválida, por favor digite novamente");
                     menuCadastro();
             }
-        } catch (CpfFormatoInvalidoException e){
+        } catch (DocumentoFormatoInvalidoException e){
             System.out.println(e.getMessage());
             System.out.println("Cadastro não realizado!");
             menuCadastro();
