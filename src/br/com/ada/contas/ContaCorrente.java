@@ -6,12 +6,14 @@ import br.com.ada.clientes.TipoCliente;
 
 import java.util.List;
 
+import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_RENDIMENTO_DEPOSITO_CORRENTE;
+
 public class ContaCorrente extends Conta implements IInvestimento {
 
     public ContaCorrente(Cliente cliente) {
         super(cliente);
         super.setTipoConta(TipoConta.CORRENTE);
-        super.setRendimentoDeposito(1);
+        super.setRendimentoDeposito(TAXA_RENDIMENTO_DEPOSITO_CORRENTE);
     }
 
     @Override

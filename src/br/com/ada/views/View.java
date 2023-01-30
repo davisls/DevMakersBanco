@@ -1,6 +1,8 @@
 package br.com.ada.views;
 
+import br.com.ada.excecoes.DocumentoFormatoInvalidoException;
 import br.com.ada.excecoes.SenhaForaDoPadraoException;
+import br.com.ada.excecoes.ValorNegativoException;
 import br.com.ada.validacoes.ValidarInput;
 
 import java.util.Scanner;
@@ -9,17 +11,17 @@ public abstract class View {
     public Scanner sc = new Scanner(System.in);
     public ValidarInput validarInput = new ValidarInput();
 
+
     public double getDouble () {
-        double valor = 0;
-
         try {
+            double valor = 0;
             valor = Double.parseDouble(getString());
-        } catch (Exception e) {
+            validarInput.getValidarValoresPositivos().validarValoresPositivos(valor);
+            return valor;
+        } catch (NumberFormatException e) {
             System.out.println("Valor inválido, tente novamente.");
-            getDouble();
+            return getDouble();
         }
-
-        return valor;
     }
 
     public int pedirOpcao() {
@@ -30,30 +32,31 @@ public abstract class View {
             System.out.println("Valor inválido, tente novamente.");
             pedirOpcao();
         }
-
         return valor;
     }
 
     public String getString() {
         String string = sc.nextLine();
-        if(validarInput.validarString.isVazio(string)){
+        if(validarInput.getValidarString().isVazio(string)){
             return getString();
         };
         return string;
     }
 
-    public String pedirCpf() {
+    public String pedirCpf() throws DocumentoFormatoInvalidoException {
+        String cpf;
         System.out.println("Digite o seu cpf:");
-        String cpf =  getString();
+        cpf =  getString();
+        validarInput.getValidarCpf().validarFormatoInputCpf(cpf);
         return cpf;
-        //todo - validar cpf
     }
 
-    public String pedirCnpj() {
+    public String pedirCnpj() throws DocumentoFormatoInvalidoException {
+        String cnpj;
         System.out.println("Digite o seu cnpj:");
-        String cnpj = getString();
+        cnpj = getString();
+        validarInput.getValidarCnpj().validarFormatoInputCnpj(cnpj);
         return cnpj;
-        //todo - validar cnpj
     }
 
     public String pedirNome() {
@@ -66,10 +69,10 @@ public abstract class View {
         System.out.println("Digite sua senha:");
         String senha = getString();
         try {
-            validarInput.validarSenha.validarTamanhoSenha(senha);
+            validarInput.getValidarSenha().validarTamanhoSenha(senha);
         } catch(SenhaForaDoPadraoException ex) {
             System.out.println(ex.getMessage());
-            pedirSenha();
+            return pedirSenha();
         }
         return senha;
     }
