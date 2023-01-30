@@ -1,24 +1,33 @@
 package br.com.ada.validacoes;
 
 import br.com.ada.clientes.ClienteFisico;
+import br.com.ada.excecoes.CpfFormatoInvalidoException;
+import br.com.ada.excecoes.CpfNaoCadastradoException;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
 
 import java.util.List;
 
 public class ValidarCpf {
 
-    public boolean validarFormatoInput(String cpf){
+    public void validarFormatoInput(String cpf){
+        boolean validar;
         ValidacaoDocumento validacaoDocumento = new ValidacaoDocumento();
-        return validacaoDocumento.isCPF(cpf);
+        validar = validacaoDocumento.isCPF(cpf);
+        if (!validar){
+            throw new CpfFormatoInvalidoException("Este cpf não esta em um formato válido.");
+        }
     }
 
-    public boolean isCpfCadastrado(String cpf) {
+    public void isCpfCadastrado(String cpf) {
+        boolean isCpfCadastrado = false;
         List<ClienteFisico> clientes = RepositorioClienteFisico.getInstance().retornarClientesFisico();
         for (ClienteFisico cliente : clientes) {
             if (cliente.getCpf().equals(cpf)) {
-                return true;
+                isCpfCadastrado = true;
             }
         }
-        return false;
+        if (isCpfCadastrado == false) {
+            throw new CpfNaoCadastradoException("CPF não cadastrado!");
+        }
     }
 }

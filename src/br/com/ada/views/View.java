@@ -1,5 +1,6 @@
 package br.com.ada.views;
 
+import br.com.ada.excecoes.CpfFormatoInvalidoException;
 import br.com.ada.excecoes.SenhaForaDoPadraoException;
 import br.com.ada.validacoes.ValidacaoConta;
 import br.com.ada.validacoes.ValidarInput;
@@ -44,14 +45,11 @@ public abstract class View {
         return string;
     }
 
-    public String pedirCpf() {
-        boolean isValid = false;
+    public String pedirCpf() throws CpfFormatoInvalidoException{
         String cpf;
-        do {
-            System.out.println("Digite o seu cpf:");
-            cpf =  getString();
-            isValid = validarInput.getValidarCpf().validarFormatoInput(cpf);
-        } while (!isValid);
+        System.out.println("Digite o seu cpf:");
+        cpf =  getString();
+        validarInput.getValidarCpf().validarFormatoInput(cpf);
         return cpf;
     }
 

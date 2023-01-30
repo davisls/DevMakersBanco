@@ -1,7 +1,9 @@
 package br.com.ada.views.banco;
 
+import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.ClienteFisico;
 import br.com.ada.clientes.ClienteJuridico;
+import br.com.ada.excecoes.CpfFormatoInvalidoException;
 import br.com.ada.excecoes.CpfNaoCadastradoException;
 import br.com.ada.excecoes.SenhaErradaException;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
@@ -57,12 +59,23 @@ public class MenuLoginView extends View {
     }
 
     private void menuLoginClienteFisico() {
-        String cpf = pedirCpf();
-        if (!validarInput.getValidarCpf().isCpfCadastrado(cpf)) {
-            throw new CpfNaoCadastradoException("Cpf não cadastrado!");
-        }
-        ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
+        try {
+            String cpf = pedirCpf();
+            validarInput.getValidarCpf().isCpfCadastrado(cpf);
 
+            ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
+            validarSenhaCliente(cliente);
+
+            System.out.println("cliente fisico logado");
+            ClienteFisicoView.getInstance().menuInicial(cliente);
+        } catch (CpfFormatoInvalidoException | CpfNaoCadastradoException e){
+            System.out.println(e.getMessage());
+            menuLogin();
+        }
+
+    }
+
+    public void validarSenhaCliente(Cliente cliente){
         String senhaInserida = pedirSenha();
         try {
             validarInput.getValidarSenha().validarSenhaDoCliente(cliente, senhaInserida);
@@ -71,9 +84,6 @@ public class MenuLoginView extends View {
             System.out.println(ex.getMessage());
             menuLoginClienteFisico();
         }
-//
-        System.out.println("cliente fisico logado");
-        ClienteFisicoView.getInstance().menuInicial(cliente);
     }
 
 }
