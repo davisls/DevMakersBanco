@@ -3,7 +3,9 @@ package br.com.ada.contas;
 import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.TipoCliente;
 import br.com.ada.excecoes.SaldoInsuficienteException;
+import br.com.ada.excecoes.ValorNegativoException;
 import br.com.ada.validacoes.ValidacaoConta;
+import br.com.ada.validacoes.ValidarValoresPositivos;
 
 import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_SAQUE_CLIENTE_FISICO;
 import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_SAQUE_CLIENTE_JURIDICO;
@@ -71,6 +73,7 @@ public abstract class Conta implements IConta {
     }
 
     public void depositar(double valor) {
+
         this.setSaldo(this.getSaldo() + valor * this.getRendimentoDeposito());
     }
 

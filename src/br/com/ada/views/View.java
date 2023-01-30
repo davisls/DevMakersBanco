@@ -2,7 +2,7 @@ package br.com.ada.views;
 
 import br.com.ada.excecoes.DocumentoFormatoInvalidoException;
 import br.com.ada.excecoes.SenhaForaDoPadraoException;
-import br.com.ada.validacoes.ValidacaoConta;
+import br.com.ada.excecoes.ValorNegativoException;
 import br.com.ada.validacoes.ValidarInput;
 
 import java.util.Scanner;
@@ -11,19 +11,17 @@ public abstract class View {
     public Scanner sc = new Scanner(System.in);
     public ValidarInput validarInput = new ValidarInput();
 
-    public ValidacaoConta validacaoConta = new ValidacaoConta();
 
     public double getDouble () {
-        double valor = 0;
-
         try {
+            double valor = 0;
             valor = Double.parseDouble(getString());
-        } catch (Exception e) {
+            validarInput.getValidarValoresPositivos().validarValoresPositivos(valor);
+            return valor;
+        } catch (NumberFormatException e) {
             System.out.println("Valor inválido, tente novamente.");
-            getDouble();
+            return getDouble();
         }
-
-        return valor;
     }
 
     public int pedirOpcao() {

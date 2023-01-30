@@ -3,6 +3,8 @@ package br.com.ada.views.contas;
 import br.com.ada.contas.ContaInvestimento;
 import br.com.ada.contas.ContaPoupanca;
 import br.com.ada.contas.TipoConta;
+import br.com.ada.excecoes.SaldoInsuficienteException;
+import br.com.ada.excecoes.ValorNegativoException;
 import br.com.ada.repositorio.conta.RepositorioContaInvestimento;
 
 public class ContaPoupancaView extends ContaView {
@@ -50,27 +52,32 @@ public class ContaPoupancaView extends ContaView {
     }
 
     public void menuInvestimento(ContaPoupanca conta) {
-        if (conta.getCliente().getContas().stream().noneMatch(contaCliente -> contaCliente.getTipoConta() == TipoConta.INVESTIMENTO)) {
-            System.out.println("No momento essa é sua melhor conta disponível em termos de rentabilidade.");
-            menuInicial(conta);
+        try {
+            if (conta.getCliente().getContas().stream().noneMatch(contaCliente -> contaCliente.getTipoConta() == TipoConta.INVESTIMENTO)) {
+                System.out.println("No momento essa é sua melhor conta disponível em termos de rentabilidade.");
+                menuInicial(conta);
+            }
+
+            System.out.println("Digite 1 para investir na Conta Investimento");
+
+            int tipoConta = pedirOpcao();
+
+            System.out.println("Quanto deseja investir?");
+            double valorInvestimento = getDouble();
+
+            switch (tipoConta){
+                case 1:
+                    ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(conta.getCliente());
+                    conta.investir(valorInvestimento, ci);
+                    break;
+                default:
+                    System.out.println("Opção inválida, por favor digite novamente");
+                    menuInvestimento(conta);
+            }
+        } catch (ValorNegativoException | SaldoInsuficienteException e){
+            System.out.println(e.getMessage());
         }
 
-        System.out.println("Digite 1 para investir na Conta Investimento");
-
-        int tipoConta = pedirOpcao();
-
-        System.out.println("Quanto deseja investir?");
-        double valorInvestimento = getDouble();
-
-        switch (tipoConta){
-            case 1:
-                ContaInvestimento ci = RepositorioContaInvestimento.getInstance().retornarContaInvestimento(conta.getCliente());
-                conta.investir(valorInvestimento, ci);
-                break;
-            default:
-                System.out.println("Opção inválida, por favor digite novamente");
-                menuInvestimento(conta);
-        }
     }
 
 }
