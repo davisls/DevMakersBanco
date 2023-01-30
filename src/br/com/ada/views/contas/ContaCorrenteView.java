@@ -16,8 +16,10 @@ public class ContaCorrenteView extends ContaView {
     public void menuInicial(ContaCorrente conta) {
         boolean sair = false;
         do {
-            System.out.println("Você está na sua conta corrente, o que deseja fazer?");
-            System.out.println("Digite 1 para consultar o saldo.");
+            System.out.println("\nVocê está na sua conta corrente.");
+            System.out.println("O número dessa conta é: " + conta.getNumeroConta());
+            System.out.println("O que deseja fazer?");
+            System.out.println("\nDigite 1 para consultar o saldo.");
             System.out.println("Digite 2 para realizar um saque.");
             System.out.println("Digite 3 para realizar um depósito.");
             System.out.println("Digite 4 para realizar um investimento.");
@@ -66,7 +68,7 @@ public class ContaCorrenteView extends ContaView {
             }
 
             if (!temContaParaInvestir) {
-                System.out.println("No momento essa é sua melhor conta disponível em termos de rentabilidade.");
+                System.out.println("\nNo momento essa é sua melhor conta disponível em termos de rentabilidade.");
                 System.out.println();
                 menuInicial(conta);
             }
