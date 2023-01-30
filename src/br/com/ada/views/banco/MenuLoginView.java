@@ -1,7 +1,10 @@
 package br.com.ada.views.banco;
 
+import br.com.ada.clientes.Cliente;
 import br.com.ada.clientes.ClienteFisico;
 import br.com.ada.clientes.ClienteJuridico;
+import br.com.ada.excecoes.DocumentoFormatoInvalidoException;
+import br.com.ada.excecoes.DocumentoNaoCadastradoException;
 import br.com.ada.excecoes.SenhaErradaException;
 import br.com.ada.repositorio.cliente.RepositorioClienteFisico;
 import br.com.ada.repositorio.cliente.RepositorioClienteJuridico;
@@ -32,49 +35,44 @@ public class MenuLoginView extends View {
                 System.out.println("Opção inválida, por favor digite novamente");
                 menuLogin();
         }
-
     }
 
     private void menuLoginClienteJuridico() {
-        String cnpj = pedirCnpj();
-        if (!validarInput.getValidarCnpj().isCnpjCadastrado(cnpj)) {
-            //todo - exceção cnpj não cadastrado
-            System.out.println("esse cnpj não esta cadastrado!");
-            return;
+        try {
+            String cnpj = pedirCnpj();
+            validarInput.getValidarCnpj().isCnpjCadastrado(cnpj);
+            ClienteJuridico cliente = RepositorioClienteJuridico.getInstance().retornarClientePorCnpj(cnpj);
+            validarSenhaCliente(cliente);
+            System.out.println("cliente jurídico logado");
+            ClienteJuridicoView.getInstance().menuInicial(cliente);
+        } catch (DocumentoFormatoInvalidoException | DocumentoNaoCadastradoException e){
+            System.out.println(e.getMessage());
+            menuLogin();
         }
-        ClienteJuridico cliente = RepositorioClienteJuridico.getInstance().retornarClientePorCnpj(cnpj);
-
-        System.out.println("Digite sua senha:");
-        String senhaInserida = getString();
-        if (!cliente.verificaSenha(senhaInserida)) {
-            //todo - exceção para senha errada
-            System.out.println("senha inválida");
-            return;
-        }
-        System.out.println("cliente juridico logado");
-        ClienteJuridicoView.getInstance().menuInicial(cliente);
     }
 
     private void menuLoginClienteFisico() {
-        String cpf = pedirCpf();
-        if (!validarInput.getValidarCpf().isCpfCadastrado(cpf)) {
-            //todo - exceção cpf não cadastrado
-            System.out.println("esse cpf não esta cadastrado!");
-            return;
+        try {
+            String cpf = pedirCpf();
+            validarInput.getValidarCpf().isCpfCadastrado(cpf);
+            ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
+            validarSenhaCliente(cliente);
+            System.out.println("cliente fisico logado");
+            ClienteFisicoView.getInstance().menuInicial(cliente);
+        } catch (DocumentoFormatoInvalidoException | DocumentoNaoCadastradoException e){
+            System.out.println(e.getMessage());
+            menuLogin();
         }
-        ClienteFisico cliente = RepositorioClienteFisico.getInstance().retornarClientePorCpf(cpf);
+    }
 
+    public void validarSenhaCliente(Cliente cliente){
         String senhaInserida = pedirSenha();
         try {
             validarInput.getValidarSenha().validarSenhaDoCliente(cliente, senhaInserida);
-
         } catch (SenhaErradaException ex){
             System.out.println(ex.getMessage());
-            menuLoginClienteFisico();
+            menuLogin();
         }
-//
-        System.out.println("cliente fisico logado");
-        ClienteFisicoView.getInstance().menuInicial(cliente);
     }
 
 }

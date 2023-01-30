@@ -6,11 +6,14 @@ public class ValidarInput {
     private ValidarCpf validarCpf;
     private ValidarSenha validarSenha;
 
+    private ValidarValoresPositivos validarValoresPositivos;
+
     public ValidarInput() {
         this.validarString = new ValidacaoString();
         this.validarCnpj = new ValidarCnpj();
         this.validarCpf = new ValidarCpf();
         this.validarSenha = new ValidarSenha();
+        this.validarValoresPositivos = new ValidarValoresPositivos();
     }
 
     public ValidacaoString getValidarString() {
@@ -43,5 +46,13 @@ public class ValidarInput {
 
     public void setValidarSenha(ValidarSenha validarSenha) {
         this.validarSenha = validarSenha;
+    }
+
+    public ValidarValoresPositivos getValidarValoresPositivos() {
+        return validarValoresPositivos;
+    }
+
+    public void setValidarValoresPositivos(ValidarValoresPositivos validarValoresPositivos) {
+        this.validarValoresPositivos = validarValoresPositivos;
     }
 }
