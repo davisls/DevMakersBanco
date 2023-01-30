@@ -17,8 +17,10 @@ public class ContaPoupancaView extends ContaView {
     public void menuInicial(ContaPoupanca conta) {
         boolean sair = false;
         do {
-            System.out.println("Você está na sua conta poupança, o que deseja fazer?");
-            System.out.println("Digite 1 para consultar o saldo.");
+            System.out.println("\nVocê está na sua conta poupança.");
+            System.out.println("O número dessa conta é: " + conta.getNumeroConta());
+            System.out.println("O que deseja fazer?");
+            System.out.println("\nDigite 1 para consultar o saldo.");
             System.out.println("Digite 2 para realizar um saque.");
             System.out.println("Digite 3 para realizar um depósito.");
             System.out.println("Digite 4 para realizar um investimento.");
@@ -54,7 +56,7 @@ public class ContaPoupancaView extends ContaView {
     public void menuInvestimento(ContaPoupanca conta) {
         try {
             if (conta.getCliente().getContas().stream().noneMatch(contaCliente -> contaCliente.getTipoConta() == TipoConta.INVESTIMENTO)) {
-                System.out.println("No momento essa é sua melhor conta disponível em termos de rentabilidade.");
+                System.out.println("\nNo momento essa é sua melhor conta disponível em termos de rentabilidade.");
                 menuInicial(conta);
             }
 

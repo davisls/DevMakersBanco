@@ -20,7 +20,7 @@ public class ClienteJuridicoView extends View implements IClienteView {
 
     @Override
     public void menuInicial(Cliente cliente) {
-        System.out.println("Bem vindo " + cliente.getNome() + "!");
+        System.out.println("\nBem vindo " + cliente.getNome() + "!");
 
         if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
             System.out.println("Digite 1 para acessar sua Conta Corrente.");

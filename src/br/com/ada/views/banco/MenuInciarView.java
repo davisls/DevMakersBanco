@@ -14,8 +14,7 @@ public class MenuInciarView extends View {
     public void menuInicial() {
         boolean sair = false;
         do {
-            System.out.println("");
-            System.out.println("Bem vindo ao Banco");
+            System.out.println("\nBem vindo ao Banco");
             System.out.println("Digite 1 para abrir conta.");
             System.out.println("Digite 2 para acessar sua conta.");
             System.out.println("Digite 3 para encerrar a sessão.");

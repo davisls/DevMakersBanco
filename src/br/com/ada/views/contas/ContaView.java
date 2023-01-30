@@ -10,7 +10,7 @@ public class ContaView extends View {
     public void menuSaque(Conta conta) {
         menuSaldo(conta);
         try {
-            System.out.println("Quanto deseja sacar?");
+            System.out.println("\nQuanto deseja sacar?");
             double valorSaque= getDouble();
             conta.sacar(valorSaque);
             System.out.println("Saque realizado com sucesso!");
@@ -21,12 +21,12 @@ public class ContaView extends View {
     }
 
     public void menuSaldo(Conta conta) {
-        System.out.println("Seu saldo é " + String.format("%.2f",conta.getSaldo())  + ".");
+        System.out.println("\nSeu saldo é " + String.format("%.2f",conta.getSaldo())  + ".");
     }
 
     public void menuDeposito(Conta conta) {
         try{
-            System.out.println("Quanto deseja depositar?");
+            System.out.println("\nQuanto deseja depositar?");
             double valorDeposito = getDouble();
             conta.depositar(valorDeposito);
         } catch (ValorNegativoException e){
@@ -37,7 +37,7 @@ public class ContaView extends View {
 
     public void menuTransferencia(Conta conta) {
         try {
-            System.out.println("Digite o valor que vai ser transferido:");
+            System.out.println("\nDigite o valor que vai ser transferido:");
             double valorParaTransferencia = getDouble();
             System.out.println("Digite o número da conta para qual você quer transferir o dinheiro:");
             String numeroContaDestino = getString();
