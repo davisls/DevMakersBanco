@@ -51,7 +51,7 @@ public abstract class View {
         return cpf;
     }
 
-    public String pedirCnpj() {
+    public String pedirCnpj() throws DocumentoFormatoInvalidoException {
         String cnpj;
         System.out.println("Digite o seu cnpj:");
         cnpj = getString();

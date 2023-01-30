@@ -63,6 +63,7 @@ public class ClienteFisicoView extends View implements IClienteView {
                     break;
                 case 5:
                     sair = true;
+                    //todo - verificar o porque o metodo repete 2 vezes antes de sair;
                     break;
                 default:
                     System.out.println("Opção inválida, por favor digite novamente");

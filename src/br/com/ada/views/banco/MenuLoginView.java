@@ -69,10 +69,9 @@ public class MenuLoginView extends View {
         String senhaInserida = pedirSenha();
         try {
             validarInput.getValidarSenha().validarSenhaDoCliente(cliente, senhaInserida);
-
         } catch (SenhaErradaException ex){
             System.out.println(ex.getMessage());
-            menuLoginClienteFisico();
+            menuLogin();
         }
     }
 
