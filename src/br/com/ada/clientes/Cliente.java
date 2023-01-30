@@ -12,7 +12,6 @@ public abstract class Cliente implements ICliente{
     private String nome;
     private String senha;
     private List<Conta> contas = new ArrayList<>();
-
     private TipoCliente tipoCliente;
 
     public Cliente(String nome, String senha) {

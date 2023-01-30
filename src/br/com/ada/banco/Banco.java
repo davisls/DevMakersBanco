@@ -13,11 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Banco {
-    private List<Cliente> clienteList = new ArrayList<>();
-
-    public int contador = 0;
-
+    private List<Cliente> clienteList;
     private static final Banco INSTANCE = new Banco(new ArrayList<>());
+    public int contador = 0;
 
     private Banco(List<Cliente> clienteList) {
         this.clienteList = clienteList;

@@ -1,6 +1,5 @@
 package br.com.ada.aplicacao;
 
-
 import br.com.ada.banco.Banco;
 import br.com.ada.banco.ExemploClientes;
 

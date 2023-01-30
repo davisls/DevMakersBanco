@@ -1,10 +1,6 @@
 package br.com.ada.contas;
 
 import br.com.ada.clientes.Cliente;
-import br.com.ada.clientes.ClienteJuridico;
-import br.com.ada.clientes.TipoCliente;
-
-import java.util.List;
 
 import static br.com.ada.utilidades.InformacoesDeTaxas.TAXA_RENDIMENTO_DEPOSITO_CORRENTE;
 
