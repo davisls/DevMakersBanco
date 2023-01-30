@@ -23,7 +23,7 @@ public class ClienteFisicoView extends View implements IClienteView {
 
     @Override
     public void menuInicial(Cliente cliente) {
-            System.out.println("\n ~~~~~< Bem vindo " + cliente.getNome() + "! >~~~~~");
+            System.out.println("\n ~~~~~< Bem-vindo " + cliente.getNome() + "! >~~~~~");
 
             if (cliente.getContas().stream().anyMatch(conta -> conta.getTipoConta() == TipoConta.CORRENTE)) {
                 System.out.println("Digite 1 para acessar sua Conta Corrente.");
